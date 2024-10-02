@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.settings, .output {
+    background-color: #333;
+    padding: 20px;
+    width: 45%;
+}
+
+.top-image {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100%;
+    height: auto;
+}
+
+.preset-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.preset {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    background-color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+.top-image {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    border-radius: 50%;
+    border: 5px solid #444; /* Dark grey border */
+    display: block;
+    margin: 0 auto;
+}
+.preset img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.stars {
+    margin-bottom: 20px;
+}
+
+.star {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.result-box {
+    background-color: #444;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.trinket-boxes, .selected-trinkets {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.trinket, .selected-trinket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.trinket img, .selected-trinket img {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.trinket.selected {
+    border-color: yellow;
+}
+
+.selected-trinket::after {
+    content: '?';
+    font-size: 24px;
+    color: white;
+}
+
+.selected-trinket img {
+    display: none;
+}
+
+.selected-trinket.has-image img {
+    display: block;
+}
+
+.selected-trinket.has-image::after {
+    display: none;
+}

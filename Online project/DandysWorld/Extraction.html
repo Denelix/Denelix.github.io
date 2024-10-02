@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="settings">
+			<!-- PRESETS -->
+            <img src="https://avatars.githubusercontent.com/u/69168805?v=4" alt="Image" class="top-image">
+            <div class="preset-boxes">
+                <div class="preset" onclick="selectToon(3, 3, false)">
+                    <img src="">
+                </div>
+                <div class="preset" onclick="selectToon(3, 3, true)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/b/b3/Boxten_Render.png" alt="Boxten">
+                </div>
+                <div class="preset" onclick="selectToon(3, 4, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/9/9e/Brightney_Render.png/revision/latest?cb=20240803025907" alt="Brightney">
+                </div>
+                <div class="preset" onclick="selectToon(1, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/9/90/Cosmo_Render.png/revision/latest/scale-to-width-down/110?cb=20240823014246" alt="Cosmo">
+                </div>
+                <div class="preset" onclick="selectToon(4, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/4/46/FinnRender.png/revision/latest/scale-to-width-down/110?cb=20240921160350" alt="Finn">
+                </div>
+                <div class="preset" onclick="selectToon(2, 2, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/1/12/Flutter_Render.png/revision/latest/scale-to-width-down/110?cb=20240712200731" alt="Flutter">
+                </div>
+                <div class="preset" onclick="selectToon(5, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/9/91/Gigi_Render.png/revision/latest/scale-to-width-down/110?cb=20240928172027" alt="Gigi">
+                </div>
+                <div class="preset" onclick="selectToon(2, 5, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/c/c5/Glisten_Render.png/revision/latest/scale-to-width-down/110?cb=20240823112402" alt="Glisten">
+                </div>
+                <div class="preset" onclick="selectToon(2, 2, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/a/a9/Goob_Render.png/revision/latest/scale-to-width-down/110?cb=20240806025850" alt="Goob">
+                </div>
+                <div class="preset" onclick="selectToon(3, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/0/0a/Poppy_Render.png/revision/latest/scale-to-width-down/110?cb=20240807221617" alt="Poppy">
+                </div>
+                <div class="preset" onclick="selectToon(3, 5, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/9/90/Razzle_%26_Dazzle_Render.png/revision/latest/scale-to-width-down/110?cb=20240806032401" alt="Razzle & Dazzle">
+                </div>
+                <div class="preset" onclick="selectToon(3, 4, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/9/98/Rodger_Render.png/revision/latest/scale-to-width-down/110?cb=20240807224442" alt="Rodger">
+                </div>
+                <div class="preset" onclick="selectToon(2, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/5/50/Scraps_Render.png/revision/latest/scale-to-width-down/110?cb=20240803023344" alt="Scraps">
+                </div>
+                <div class="preset" onclick="selectToon(1, 1, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/a/a1/Shrimpo_Render.png/revision/latest/scale-to-width-down/110?cb=20240806010742" alt="Shrimpo">
+                </div>
+                <div class="preset" onclick="selectToon(3, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/8/8f/Teagan_Render.png/revision/latest/scale-to-width-down/110?cb=20240808005154" alt="Teagan">
+                </div>
+                <div class="preset" onclick="selectToon(4, 2, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/0/03/Tisha_Render.png/revision/latest/scale-to-width-down/110?cb=20240712200258" alt="Tisha">
+                </div>
+                <div class="preset" onclick="selectToon(3, 2, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/8/89/Toodles_Render.png/revision/latest/scale-to-width-down/110?cb=20240806012246" alt="Toodles">
+                </div>
+                <div class="preset" onclick="selectToon(2, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/9/92/Astro_Render.png/revision/latest/scale-to-width-down/110?cb=20240916173626" alt="Astro">
+                </div>
+                <div class="preset" onclick="selectToon(3, 1, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/8/8d/Pebble_Render.png/revision/latest/scale-to-width-down/110?cb=20240806022953" alt="Pebble">
+                </div>
+                <div class="preset" onclick="selectToon(5, 3, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/a/a6/Shelly_Render.png/revision/latest/scale-to-width-down/110?cb=20240712200749" alt="Shelly">
+                </div>
+                <div class="preset" onclick="selectToon(2, 2, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/1/15/SproutRender.png/revision/latest/scale-to-width-down/110?cb=20240823015339" alt="Sprout">
+                </div>
+                <div class="preset" onclick="selectToon(4, 5, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/5/53/Vee_Render.png/revision/latest/scale-to-width-down/110?cb=20240806012341" alt="Vee">
+                </div>
+                <div class="preset" onclick="selectToon(5, 5, false)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/6/60/Dandy.png/revision/latest/scale-to-width-down/110?cb=20240706132612" alt="Dandy">
+                </div>
+            </div>
+			<!-- SETTINGS -->
+            <h2>Settings</h2>
+            <div>
+                <label>Number of Machines:</label>
+                <input type="number" id="machines" value="5" min="1">
+            </div>
+            <div>
+                <label>Skill Check: </label>
+                <div class="stars" id="skillStars">
+                    <img src="assets/star-off.png" class="star" onclick="setSkill(1)">
+                    <img src="assets/star-off.png" class="star" onclick="setSkill(2)">
+                    <img src="assets/star-off.png" class="star" onclick="setSkill(3)">
+                    <img src="assets/star-off.png" class="star" onclick="setSkill(4)">
+                    <img src="assets/star-off.png" class="star" onclick="setSkill(5)">
+                </div>
+            </div>
+            <div>
+                <label>Extraction Speed: </label>
+                <div class="stars" id="extractionStars">
+                    <img src="assets/star-off.png" class="star" onclick="setExtraction(1)">
+                    <img src="assets/star-off.png" class="star" onclick="setExtraction(2)">
+                    <img src="assets/star-off.png" class="star" onclick="setExtraction(3)">
+                    <img src="assets/star-off.png" class="star" onclick="setExtraction(4)">
+                    <img src="assets/star-off.png" class="star" onclick="setExtraction(5)">
+                </div>
+            </div>
+            <div>
+                <label>Number of Players(include yourself): </label>
+                <input type="number" id="players" value="1" min="1" max="8">
+            </div>
+            <div>
+                <label>Shelly cheering you on?: <input type="checkbox" id="Shelly"></label>
+            </div>
+            <div>
+				<label>Consistent Coin? (Lucky Coin always Extract or Skill boost): <input type="checkbox" id="consistent"></label>
+            </div>
+            <button id="extract" onclick="runSimulations()">Extract</button>
+            <h3>Selected Trinkets</h3>
+            <div class="selected-trinkets">
+                <div class="selected-trinket" onclick="removeTrinket(this)">?</div>
+                <div class="selected-trinket" onclick="removeTrinket(this)">?</div>
+            </div>
+			<!-- TRINKETS-->
+            <h3>Trinkets</h3>
+            <div class="trinket-boxes">
+                <div class="trinket" onclick="selectTrinket('Lucky Coin', this)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/a/a3/Lucky_Coin.png/revision/latest?cb=20240930000802" alt="Lucky Coin">
+                </div>
+                <div class="trinket" onclick="selectTrinket('Participation Award', this)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/5/5c/Participation_Award.png/revision/latest?cb=20240803022235" alt="Participation Award">
+                </div>
+                <div class="trinket" onclick="selectTrinket('Veemote', this)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/4/4c/Vee%27s_Remote.png/revision/latest?cb=20240803135103" alt="Veemote">
+                </div>
+                <div class="trinket" onclick="selectTrinket('Machine Manual', this)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/b/b3/Machine_Manual_Trinket.png/revision/latest?cb=20240806010948" alt="Machine Manual">
+                </div>
+                <div class="trinket" onclick="selectTrinket('Wrench', this)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/2/21/Wrench_Trinket.png/revision/latest?cb=20240804194508" alt="Wrench">
+                </div>
+                <div class="trinket" onclick="selectTrinket('Blue Bandana', this)">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/5/52/Blue_Bandana.png/revision/latest?cb=20240803163952" alt="Blue Bandana">
+                </div>
+                <div class="trinket" onclick="selectTrinket('Magnifing Glass', this)" alt="Magnifing Glass">
+                    <img src="https://static.wikia.nocookie.net/dandys-world-robloxhorror/images/6/6a/Magnifying_Glass_Trinket.png/revision/latest?cb=20240806032448" alt="Magnifing Glass">
+                </div>
+            </div>
+            <!-- I hate front end -->
+        </div>
+        <div class="output">
+            <h3>Results</h3>
+            <div class="result-box" id="noneResultBox">None: <span id="noneResult"></span></div>
+            <div class="result-box" id="trinket1ResultBox"><span id="trinket1Name">Trinket 1</span>: <span id="trinket1Result"></span></div>
+            <div class="result-box" id="trinket2ResultBox"><span id="trinket2Name">Trinket 2</span>: <span id="trinket2Result"></span></div>
+            <div class="result-box" id="bothResultBox">Both: <span id="bothResult"></span></div>
+            <div class="result-box">Machines Completed: <span id="machinesCompleted"></span></div>
+        </div>
+    </div>
+    <script src="scripts/Extraction.js"></script>
+</body>
+</html>

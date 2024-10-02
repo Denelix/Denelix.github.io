@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denelix's Homepage</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Font Awesome for GitHub Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Responsive container adjustments */
+        .container {
+            max-width: 100%;
+            padding: 20px;
+        }
+
+        /* Hero section styling */
+        #hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 40vh;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Projects section styling */
+        #projects {
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        #projects h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .bubbles-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Project bubbles styling */
+        .bubble {
+            background-color: #ffffff;
+            color: #000;
+            border: 2px solid #dda0dd;
+            border-radius: 8px;
+            width: 300px;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bubble-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .bubble .arrow {
+            transition: transform 0.3s;
+        }
+
+        .bubble.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Hover effect */
+        .bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Subprojects styling */
+        .subprojects {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            margin-top: 10px;
+        }
+
+        .bubble.active .subprojects {
+            max-height: 500px;
+        }
+
+        .subproject-link {
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .subproject {
+            background-color: #f5f5f5;
+            border-left: 4px solid #dda0dd;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .subproject:hover {
+            background-color: #e0d8e0;
+        }
+
+        .subproject h4 {
+            margin-bottom: 5px;
+            color: #d8bfd8;
+        }
+
+        /* Horizontal line styling */
+        .horizontal-line {
+            width: 425px;
+            height: 5px;
+            background-color: black;
+            margin: 20px auto;
+        }
+
+        /* Modal styling */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #dda0dd;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 768px) {
+            .bubble {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Dots Background -->
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+    <div class="background-dots"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="hero-content">
+                <img src="https://avatars.githubusercontent.com/u/69168805?v=4" alt="Denelix" class="profile-image">
+                <a href="https://github.com/Denelix/" target="_blank" class="github-icon">
+                    <i class="fab fa-github"></i>
+                </a>
+                <div class="bio">
+                    <p>I like to make things easy for people, I have been on the internet since I was 5 and I always wondered why certain programs were not created yet or not made the way I wanted them to. Why not make them myself here!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section with Bubbles -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <div class="horizontal-line"></div>
+            <div class="bubbles-container">
+                <div class="bubble" data-project="project1">
+                    <div class="bubble-content">
+                        VRChat
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="subprojects">
+                        <a href="https://github.com/Denelix/DQC" target="_blank" class="subproject-link">
+                            <div class="subproject">
+                                <h4>Denelix Quest Converter (Install required)</h4>
+                                <p>Quicken the creation of quest compatible avatars in a simple few clicks. And optimize them too :)</p>
+                            </div>
+                        </a>
+                        <!-- Add more subprojects as needed -->
+                    </div>
+                </div>
+                <div class="bubble" data-project="project2">
+                    <div class="bubble-content">
+                        Roblox
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="subprojects">
+                        <a href="Online project/DandysWorld/Extraction.html" target="_blank" class="subproject-link">
+                            <div class="subproject">
+                                <h4>Dandy's World Extraction Estimator (Website Tool)</h4>
+                                <p>Min-max Extraction in Dandy's world. Tool for nerds and theory crafters like myself.</p>
+                            </div>
+                        </a>
+                        <a href="https://github.com/Denelix/" target="_blank" class="subproject-link">
+                            <div class="subproject">
+                                <h4>Dandy's World MovementSpeed Estimator (Website Tool) [Not released]</h4>
+                                <p>Min-max MovementSpeed in Dandy's world and view all toons and twisteds movementspeeds. Tool for nerds and theory crafters like myself.</p>
+                            </div>
+                        </a>
+                        <!-- Add more subprojects as needed -->
+                    </div>
+                </div>
+                <div class="bubble" data-project="project3">
+                    <div class="bubble-content">
+                        League Of Legends
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="subprojects">
+                        <a href="https://github.com/Denelix/" target="_blank" class="subproject-link">
+                            <div class="subproject">
+                                <h4>Dandy's World MovementSpeed Estimator (Website Tool) [Not released]</h4>
+                                <p>Who cares about public stats, if you have enough games just figure out what you do best in your builds using your own vast data, and hopefully can understand ALL onetrick data and all is filtered by many senarios.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="bubble" data-project="project4">
+                    <div class="bubble-content">
+                        OBS
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <div class="subprojects">
+                        <a href="https://github.com/Denelix/" target="_blank" class="subproject-link">
+                            <div class="subproject">
+                                <h4>Something I really want to exist (Install Required)</h4>
+                                <p>Secret for now</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <p>Click "Okay" to continue and enable sound.</p>
+            <button id="okayButton">Okay</button>
+        </div>
+    </div>
+
+    <script>
+        const clickSound = new Audio('assets/click.mp3');
+        const hoverSound = new Audio('assets/select.mp3');
+		clickSound.volume = 0.16;
+		hoverSound.volume = 0.16;
+
+        document.getElementById('okayButton').addEventListener('click', () => {
+            document.getElementById('modal').style.display = 'none';
+            document.querySelectorAll('.bubble').forEach(bubble => {
+                bubble.addEventListener('click', () => {
+                    clickSound.pause();
+                    clickSound.currentTime = 0.2;
+                    clickSound.play();
+                    bubble.classList.toggle('active');
+                });
+
+                bubble.addEventListener('mouseenter', () => {
+                    hoverSound.pause();
+                    hoverSound.currentTime = 0.1;
+                    hoverSound.play();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

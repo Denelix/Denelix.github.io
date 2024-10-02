@@ -1,0 +1,384 @@
+/* Reset and base styles for all elements */
+/* Yup you are right don't even look through this YES I did use ChatGPT WHO DOESN'T?. I am not that great at making website styles via CSS or am that interested into doing it. But I understand the basics is enough to me.*/
+* {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Set base font */
+    background-color: #e0e0e0; /* Light gray background color */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    position: relative; /* Set relative positioning for pseudo-elements */
+}
+
+/* Create black bars on the sides */
+body::before, body::after {
+    content: ''; /* Empty content for pseudo-elements */
+    position: fixed; /* Fix position relative to viewport */
+    top: 0; /* Align to top */
+    width: 300px; /* Bar width */
+    height: 100%; /* Full height */
+    background-color: #000; /* Black color */
+    z-index: 1; /* Ensure bars are above background */
+}
+
+body::before {
+    left: 0; /* Align left bar */
+}
+
+body::after {
+    right: 0; /* Align right bar */
+}
+
+/* Background with floating dots */
+.background-dots {
+    position: fixed; /* Fix position relative to viewport */
+    top: 0; /* Align to top */
+    left: 50px; /* Start after left bar */
+    width: calc(100% - 400px); /* Full width minus the bars */
+    height: 100%; /* Full height */
+    background: transparent; /* Transparent background */
+    z-index: 0; /* Behind content */
+    overflow: hidden; /* Hide overflow */
+}
+
+.background-dots::before, .background-dots::after {
+    content: ''; /* Empty content for pseudo-elements */
+    position: absolute; /* Position relative to .background-dots */
+    width: 10px; /* Dot width */
+    height: 10px; /* Dot height */
+    background: white; /* White color */
+    border-radius: 50%; /* Make circular */
+    opacity: 0.2; /* Low opacity */
+    animation: float 10s linear infinite; /* Floating animation */
+}
+
+.background-dots::before {
+    top: 20%; /* Position dot */
+    left: 15%; /* Position dot */
+    animation-duration: 12s; /* Animation duration */
+}
+
+.background-dots::after {
+    top: 60%; /* Position dot */
+    left: 70%; /* Position dot */
+    animation-duration: 15s; /* Animation duration */
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0); /* Start position */
+        opacity: 0.2; /* Start opacity */
+    }
+    50% {
+        opacity: 0.5; /* Mid opacity */
+    }
+    100% {
+        transform: translate(50px, 50px); /* End position */
+        opacity: 0.2; /* End opacity */
+    }
+}
+
+/* Main content container styling */
+.container {
+    position: relative; /* Allow positioning of children */
+    z-index: 1; /* Above background dots */
+    max-width: 1200px; /* Max width for content */
+    margin: 0 auto; /* Center horizontally */
+    padding: 10px; /* Inner padding */
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 2s forwards; /* Fade in animation */
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; } /* End state for fadeIn */
+}
+
+/* Header and navigation styling */
+header {
+    background-color: #333; /* Dark gray color */
+    padding: 10px 0; /* Vertical padding */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px; /* Space below header */
+}
+
+nav {
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Center items vertically */
+    width: 90%; /* Width of nav */
+    margin: 0 auto; /* Center nav */
+}
+
+.logo {
+    color: #fff; /* White text */
+    font-size: 1.5em; /* Larger font */
+    font-weight: bold; /* Bold font */
+}
+
+.nav-links {
+    list-style: none; /* Remove bullet points */
+    display: flex; /* Flexbox for links */
+}
+
+.nav-links li {
+    position: relative; /* Position for dropdown */
+    margin-left: 20px; /* Space between links */
+}
+
+.nav-links a {
+    color: #000; /* Black text */
+    text-decoration: none; /* Remove underline */
+    padding: 8px 12px; /* Padding for links */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #d8bfd8; /* Light purple */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.nav-links a:hover {
+    background-color: #cda4cd; /* Darker purple on hover */
+    color: #fff; /* White text on hover */
+}
+
+/* Dropdown menu styling */
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute; /* Absolute positioning */
+    background-color: #d8bfd8; /* Light purple */
+    min-width: 160px; /* Minimum width */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow effect */
+    border-radius: 8px; /* Rounded corners */
+    top: 40px; /* Position below parent */
+    z-index: 1; /* Above other elements */
+}
+
+.dropdown-content a {
+    display: block; /* Full width link */
+    padding: 12px 16px; /* Padding for links */
+    color: #000; /* Black text */
+}
+
+.dropdown-content a:hover {
+    background-color: #cda4cd; /* Darker purple on hover */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block; /* Show dropdown on hover */
+}
+
+/* Hero section styling */
+#hero {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Column layout */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 40vh; /* 40% of viewport height */
+    text-align: center; /* Center text */
+    opacity: 0; /* Start invisible */
+    animation: fadeIn 2s forwards; /* Fade in animation */
+    padding: 20px 0; /* Vertical padding */
+}
+
+.profile-image {
+    width: 150px; /* Image width */
+    height: 150px; /* Image height */
+    border-radius: 50%; /* Circular image */
+    border: 5px solid #d8bfd8; /* Purple border */
+    object-fit: cover; /* Cover the container */
+}
+
+.github-icon {
+    margin-top: 20px; /* Space above icon */
+    font-size: 2em; /* Large icon */
+    color: #24292e; /* GitHub color */
+    transition: transform 0.3s; /* Smooth scaling */
+}
+
+.github-icon:hover {
+    transform: scale(1.2); /* Scale up on hover */
+}
+
+.bio {
+    margin-top: 20px; /* Space above bio */
+    max-width: 600px; /* Max width */
+    color: #000; /* Black text */
+    text-align: center; /* Center text */
+    font-size: 1.1em; /* Slightly larger font */
+}
+
+/* Projects section styling */
+#projects {
+    padding: 30px 20px; /* Padding around section */
+}
+
+#projects h2 {
+    text-align: center; /* Center heading */
+    margin-bottom: 20px; /* Space below heading */
+    font-size: 2em; /* Larger font size */
+    color: #333; /* Dark gray */
+}
+
+.bubbles-container {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Column layout */
+    align-items: center; /* Center horizontally */
+    gap: 10px; /* Space between items */
+}
+
+/* Main project bubbles */
+.bubble {
+    background-color: #ffffff; /* White background */
+    color: #000; /* Black text */
+    border: 2px solid #dda0dd; /* Purple border */
+    border-radius: 8px; /* Rounded corners */
+    width: 300px; /* Fixed width */
+    padding: 15px; /* Inner padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    position: relative; /* Relative for children */
+    overflow: hidden; /* Hide overflow */
+    opacity: 0; /* Start invisible */
+    transform: translateY(20px); /* Start position */
+    animation: fadeInBubble 1s forwards; /* Fade in and move up */
+}
+
+.bubble:nth-child(1) {
+    animation-delay: 0.3s; /* Delay for first bubble */
+}
+
+.bubble:nth-child(2) {
+    animation-delay: 0.5s; /* Delay for second bubble */
+}
+
+.bubble:nth-child(3) {
+    animation-delay: 0.7s; /* Delay for third bubble */
+}
+
+.bubble:nth-child(4) {
+    animation-delay: 0.9s; /* Delay for fourth bubble */
+}
+
+.bubble-content {
+    display: flex; /* Flexbox layout */
+    justify-content: space-between; /* Space out items */
+    align-items: center; /* Center items vertically */
+    font-size: 1.2em; /* Larger font */
+    font-weight: bold; /* Bold text */
+}
+
+.bubble .arrow {
+    transition: transform 0.3s; /* Smooth transition */
+}
+
+.bubble.active .arrow {
+    transform: rotate(180deg); /* Rotate arrow when active */
+}
+
+/* Hover effect for bubbles */
+.bubble:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Shadow effect */
+}
+
+/* Subprojects container styling */
+.subprojects {
+    max-height: 0; /* Start collapsed */
+    overflow: hidden; /* Hide overflow */
+    transition: max-height 0.5s ease; /* Smooth expansion */
+    margin-top: 10px; /* Space above */
+}
+
+/* Expand subprojects when active */
+.bubble.active .subprojects {
+    max-height: 500px; /* Expanded height */
+}
+
+/* Subproject styling */
+.subproject {
+    background-color: #f5f5f5; /* Light gray background */
+    border-left: 4px solid #dda0dd; /* Purple border */
+    padding: 10px 15px; /* Inner padding */
+    margin-bottom: 10px; /* Space below */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.subproject:hover {
+    background-color: #e0d8e0; /* Darker on hover */
+}
+
+.subproject h4 {
+    margin-bottom: 5px; /* Space below heading */
+    color: #341539; /* purple text >> nope made this darker */
+}
+
+.subproject a {
+    color: #301934; /* Dark text */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+.subproject a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.subproject-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.subproject:hover {
+    background-color: #e0d8e0;
+}
+/* Contact section styling */
+#contact {
+    padding: 30px 20px; /* Padding around section */
+    text-align: center; /* Center text */
+}
+
+#contact h2 {
+    margin-bottom: 10px; /* Space below heading */
+    font-size: 2em; /* Larger font */
+    color: #333; /* Dark gray */
+}
+
+#contact a {
+    color: #d8bfd8; /* Purple text */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+#contact a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #cda4cd; /* Darker purple */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .bubble {
+        width: 80%; /* Wider bubbles */
+    }
+
+    nav {
+        flex-direction: column; /* Stack nav items */
+    }
+
+    .nav-links {
+        flex-direction: column; /* Stack links */
+    }
+
+    .nav-links li {
+        margin: 10px 0; /* Space between links */
+    }
+}
+
+@keyframes fadeInBubble {
+    to {
+        opacity: 1; /* Fully visible */
+        transform: translateY(0); /* Move to position */
+    }
+}
+
