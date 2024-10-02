@@ -10,7 +10,6 @@ const random = Math.random;
 let luckyCoinStat = "None"
 let skillCheckValue = 0.5 + (skillCheck * 0.5);
 let baseSkillCheckChance = 0.25;
-let skillCheckCooldown = 4;//The cooldown is 2 but i am also including time to do the skillcheck
 let AllTrinkets = ["Lucky Coin", "Participation Award"]; // Example trinkets
 let numberOfPlayers = 1
 let isShellyBoosted = false
@@ -154,7 +153,7 @@ function simulateSkillCheck(trinkets, cooldown)
         let chance = Math.random();
         if (chance < baseSkillCheckChance+skillCheckBonus)
         {
-            cooldown = 4; //includes skill check doing and fading away and the actual cooldown between skillchecks
+            cooldown = 6; //includes skill check doing and fading away and the actual cooldown between skillchecks
             return skillCheckValue+skillValueBonus;
         }
         return 0;
