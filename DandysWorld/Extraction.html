@@ -86,7 +86,7 @@
             <h2>Settings</h2>
             <div>
                 <label>Number of Machines:</label>
-                <input type="number" id="machines" value="5" min="1">
+                <input type="number" id="machines" value="2" min="1">
             </div>
             <div>
                 <label>Skill Check: </label>
@@ -153,11 +153,15 @@
         </div>
         <div class="output">
             <h3>Results</h3>
-            <div class="result-box" id="noneResultBox">None: <span id="noneResult"></span></div>
-            <div class="result-box" id="trinket1ResultBox"><span id="trinket1Name">Trinket 1</span>: <span id="trinket1Result"></span></div>
-            <div class="result-box" id="trinket2ResultBox"><span id="trinket2Name">Trinket 2</span>: <span id="trinket2Result"></span></div>
-            <div class="result-box" id="bothResultBox">Both: <span id="bothResult"></span></div>
+            <div class="result-box" id="noneResultBox">None: <span id="noneResult">N/A</span> seconds and <span id="noneSC">0</span> Skill Checks.</div>
+            <div class="result-box" id="trinket1ResultBox"><span id="trinket1Name">None</span>: <span id="trinket1Result">N/A</span> seconds and <span id="trinket1SC">0</span> Skill Checks.</div>
+            <div class="result-box" id="trinket2ResultBox"><span id="trinket2Name">None</span>: <span id="trinket2Result">N/A</span> seconds and <span id="trinket2SC">0</span> Skill Checks.</div>
+            <div class="result-box" id="bothResultBox">Both: <span id="bothResult">N/A</span> seconds and <span id="bothSC">0</span> Skill Checks.</div>
             <div class="result-box">Machines Completed: <span id="machinesCompleted"></span></div>
+            <h3>‎ </h3>
+            <h3>Patch Notes</h3>
+            <div class="result-box">1.0 Initial release</div>
+            <div class="result-box">1.1.2 Added average "Skill Checks" done. less decimals (.532632632). Skill Check cooldown is now checked second and is properly going on cooldown</div>
         </div>
     </div>
     <script src="scripts/Extraction.js"></script>

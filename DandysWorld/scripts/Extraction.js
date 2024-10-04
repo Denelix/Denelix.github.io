@@ -1,12 +1,10 @@
 //Values the user is ablke to change
-let numberOfMachines = 5;
+let numberOfMachines = 1;
 let extractionSpeed = 3;
 let skillCheck = 5;
 let consistentCoin = false
-let tests = 1000;
-let ShellyBoost = 65
+let tests = 1500;
 
-const random = Math.random;
 let luckyCoinStat = "None"
 let skillCheckValue = 0.5 + (skillCheck * 0.5);
 let baseSkillCheckChance = 0.25;
@@ -14,7 +12,13 @@ let AllTrinkets = ["Lucky Coin", "Participation Award"]; // Example trinkets
 let numberOfPlayers = 1
 let isShellyBoosted = false
 let isBoxten = false
+let successfulSkillChecks = 0
+let ShellyBoost = 65
+let cooldown = 5
 
+setSkill(1) 
+setExtraction(1) 
+	
 function getPerSecondUnits(extractionSpeed) 
 {
     switch (extractionSpeed) 
@@ -31,7 +35,9 @@ function getPerSecondUnits(extractionSpeed)
 //=============================LOGIC================================
 function runSimulation(trinkets) 
 {
+	successfulSkillChecks = 0;
     let sum = 0;
+	
     for (let i = 0; i < tests; i++) 
     {
         sum += floorSimulation(trinkets);
@@ -41,10 +47,10 @@ function runSimulation(trinkets)
 
 function floorSimulation(trinkets) 
 {
-	let ShellyBoost = 65
-    luckyCoinStat = LuckyCoin()
+	let ShellyBoost = 65;
     let completedMachines = 0;
     let time = 0;
+    luckyCoinStat = LuckyCoin()
     
     if (trinkets.includes("Veemote")) 
     {
@@ -63,7 +69,6 @@ function floorSimulation(trinkets)
 function fillMachine(trinkets, completedMachines) 
 {
     let time = 0;
-    let cooldown = 2;
     let maxCompletion = 45;
     let currentCompletion = 0.0;
     let extraction = getPerSecondUnits(extractionSpeed);
@@ -104,7 +109,7 @@ function fillMachine(trinkets, completedMachines)
         time += 1;
         cooldown += -1;
         //Does skillcheck and extraction at same time.
-        currentCompletion += extraction + simulateSkillCheck(trinkets, cooldown);
+        currentCompletion += extraction + simulateSkillCheck(trinkets,);
 		if (isShellyBoosted && (ShellyBoost>50)) 
 		{
 			currentCompletion += extraction*0.75;
@@ -119,7 +124,7 @@ function fillMachine(trinkets, completedMachines)
     return time;
 }
 
-function simulateSkillCheck(trinkets, cooldown) 
+function simulateSkillCheck(trinkets) 
 {
     let skillCheckBonus = 0;
     let skillValueBonus = 0;
@@ -153,7 +158,8 @@ function simulateSkillCheck(trinkets, cooldown)
         let chance = Math.random();
         if (chance < baseSkillCheckChance+skillCheckBonus)
         {
-            cooldown = 6; //includes skill check doing and fading away and the actual cooldown between skillchecks
+            cooldown = 3; //includes skill check doing and fading away and the actual cooldown between skillchecks
+			successfulSkillChecks+=1;
             return skillCheckValue+skillValueBonus;
         }
         return 0;
@@ -163,7 +169,7 @@ function simulateSkillCheck(trinkets, cooldown)
 
 function LuckyCoin() {
     let chance = Math.random();
-    if (chance > 0.4 || consistentCoin) 
+    if (chance < 0.4 || consistentCoin) 
     {
         return Math.random() > 0.5 ? "Skill" : "Extraction";
     }
@@ -207,8 +213,8 @@ function selectTrinket(trinket, element) {
 
 function updateTrinkets() {
     const selectedTrinkets = document.querySelectorAll('.selected-trinket.has-image img');
-    const trinket1Name = selectedTrinkets[0] ? selectedTrinkets[0].alt : 'Trinket 1';
-    const trinket2Name = selectedTrinkets[1] ? selectedTrinkets[1].alt : 'Trinket 2';
+    const trinket1Name = selectedTrinkets[0] ? selectedTrinkets[0].alt : 'None';
+    const trinket2Name = selectedTrinkets[1] ? selectedTrinkets[1].alt : 'None';
 
     document.getElementById('trinket1Name').textContent = trinket1Name;
     document.getElementById('trinket2Name').textContent = trinket2Name;
@@ -226,16 +232,32 @@ function runSimulations()
     const trinket1 = selectedTrinkets[0] ? selectedTrinkets[0].alt : null;
     const trinket2 = selectedTrinkets[1] ? selectedTrinkets[1].alt : null;
 
+	//for now adding "successfulSkillChecks = 0;" here just so I can have this done now.
     const resultsNoTrinket = runSimulation([]);
+    const scNoTrinket = successfulSkillChecks/tests;
+	successfulSkillChecks = 0;
     const resultsTrinket1 = trinket1 ? runSimulation([trinket1]) : 'N/A';
+    const scTrinket1 = trinket1 ? successfulSkillChecks/tests : 0;
+	successfulSkillChecks = 0;
     const resultsTrinket2 = trinket2 ? runSimulation([trinket2]) : 'N/A';
+    const scTrinket2 = trinket2 ? successfulSkillChecks/tests : 0;
     const resultsBothTrinkets = trinket1 && trinket2 ? runSimulation([trinket1, trinket2]) : 'N/A';
+    const scBothTrinkets = trinket1 && trinket2 ? successfulSkillChecks/tests : 0;
 
-    document.getElementById('noneResult').textContent = resultsNoTrinket;
-    document.getElementById('trinket1Result').textContent = resultsTrinket1;
-    document.getElementById('trinket2Result').textContent = resultsTrinket2;
-    document.getElementById('bothResult').textContent = resultsBothTrinkets;
-    document.getElementById('machinesCompleted').textContent = numberOfMachines;
+	//Checking if it's a number if not put N/A. This is to prevent a function not exsisting and making the code not work as intended.
+	document.getElementById('noneResult').textContent = typeof resultsNoTrinket === 'number' ? resultsNoTrinket.toFixed(1) : 'N/A';
+	document.getElementById('trinket1Result').textContent = typeof resultsTrinket1 === 'number' ? resultsTrinket1.toFixed(1) : 'N/A';
+	document.getElementById('trinket2Result').textContent = typeof resultsTrinket2 === 'number' ? resultsTrinket2.toFixed(1) : 'N/A';
+	document.getElementById('bothResult').textContent = typeof resultsBothTrinkets === 'number' ? resultsBothTrinkets.toFixed(1) : 'N/A';
+
+	document.getElementById('machinesCompleted').textContent = numberOfMachines;
+
+	document.getElementById('noneSC').textContent = typeof scNoTrinket === 'number' ? Math.floor(scNoTrinket) : 'N/A';
+	document.getElementById('trinket1SC').textContent = typeof scTrinket1 === 'number' ? Math.floor(scTrinket1) : 'N/A';
+	document.getElementById('trinket2SC').textContent = typeof scTrinket2 === 'number' ? Math.floor(scTrinket2) : 'N/A';
+	document.getElementById('bothSC').textContent = typeof scBothTrinkets === 'number' ? Math.floor(scBothTrinkets) : 'N/A';
+
+	document.getElementById('machinesCompleted').textContent = numberOfMachines;
 }
 
 
@@ -247,7 +269,7 @@ function removeTrinket(element) {
 
 function selectToon(Skill, Extraction, boxten) 
 {
-    console.log(Skill, Extraction, boxten); // Add this log to see what is passed
+    console.log(Skill, Extraction, boxten); 
     const button = document.getElementById('extract');
 
     if (boxten == 'true') 
