@@ -1,7 +1,8 @@
 //Values the user is ablke to change
 let numberOfMachines = 1;
-let extractionSpeed = 3;
-let skillCheck = 5;
+let extractionSpeed = 1;
+let movementSpeed = 1;
+let skillCheck = 1;
 let consistentCoin = false
 let tests = 1500;
 
@@ -16,9 +17,12 @@ let successfulSkillChecks = 0
 let ShellyBoost = 65
 let cooldown = 5
 
+//Get sets and defaults
+
 setSkill(1) 
 setExtraction(1) 
-	
+setMovementSpeed(1) 
+
 function getPerSecondUnits(extractionSpeed) 
 {
     switch (extractionSpeed) 
@@ -26,13 +30,42 @@ function getPerSecondUnits(extractionSpeed)
         case 1: return 0.75;
         case 2: return 0.85;
         case 3: return 1.0;
-        case 4: return 1.25;
+        case 4: return 1.2;
         case 5: return 1.5;
         default: return 1.0;
     }
 }
 
-//=============================LOGIC================================
+function getWalkSpeed() 
+{
+    return movementSpeed*2.5+7.5;
+}
+
+function getRunSpeed() 
+{
+    return movementSpeed*2.5+17.5;
+}
+
+function setExtraction(stars) 
+{
+    extractionSpeed = stars;
+    updateStars('extractionStars', stars);
+}
+
+function setSkill(stars) 
+{
+    skillCheck = stars;
+    updateStars('skillStars', stars);
+}
+
+function setMovementSpeed(stars) 
+{
+    movementSpeed = stars;
+    updateStars('movementSpeedStars', stars);
+}
+
+
+//=============================Calculations :nerd:================================
 function runSimulation(trinkets) 
 {
 	successfulSkillChecks = 0;
@@ -74,15 +107,24 @@ function fillMachine(trinkets, completedMachines)
     let extraction = getPerSecondUnits(extractionSpeed);
 	ShellyBoost = 65
     //TRINKET IMPLEMENTATION!!!!
+    if (isBoxten) 
+    {
+		if (numberOfPlayers < 1)
+		{
+			numbersOfPlayers=1;
+		}
+        extraction= extraction+(0.06*numberOfPlayers);
+    }
+	
     if (trinkets.includes("Machine Manual")) 
     {
-        extraction= extraction*1.05;
+        extraction *=1.05;
     }
     if (trinkets.includes("Lucky Coin")) 
     {
         if (luckyCoinStat=="Extraction") 
         {
-            extraction= extraction*1.12;
+            extraction*=1.12;
         }
     }
     if (trinkets.includes("Wrench") && completedMachines==0) 
@@ -91,19 +133,9 @@ function fillMachine(trinkets, completedMachines)
     }
     if (trinkets.includes("Blue Bandana")) 
     {
-        extraction = extraction*1.075;
+        extraction *=1.075;
     }
     //TRINKET IMPLEMENTATION!!!!
-    
-    if (isBoxten) 
-    {
-		if (numberOfPlayers < 1)
-		{
-			numbersOfPlayers=1;
-		}
-        extraction= extraction+(1.06*numberOfPlayers);
-    }
-	
     while (currentCompletion < maxCompletion) 
     {
         time += 1;
@@ -166,36 +198,64 @@ function simulateSkillCheck(trinkets)
     }
     return 0;
 }
+// now for movementspeed related stuff
 
-function LuckyCoin() {
-    let chance = Math.random();
-    if (chance < 0.4 || consistentCoin) 
-    {
-        return Math.random() > 0.5 ? "Skill" : "Extraction";
-    }
-    return "None"
-}
 
-function setExtraction(stars) 
+function getMovementSpeed(trinkets) 
 {
-    extractionSpeed = stars;
-    updateStars('extractionStars', stars);
+	let ms = [0.0,0.0];
+	
+	//default ms
+    ms[0] = getWalkSpeed();
+    ms[1] = getRunSpeed();
+	
+    if (trinkets.includes("Alarm")) 
+	{
+		ms[0]*=1.25;
+		ms[1]*=1.25;
+	}
+    if (trinkets.includes("Bone")) 
+	{
+		ms[0]*=1.25;
+		ms[1]*=1.25;
+	}
+    if (trinkets.includes("Brick")) 
+	{
+		ms[0]*=.9;
+		ms[1]*=.9;
+	}
+    if (trinkets.includes("Dog Plush")) 
+	{
+		ms[0]*=1.1;
+	}
+    if (trinkets.includes("Pink Bow")) 
+	{
+		ms[1]*=1.075;
+	}
+    if (trinkets.includes("Pull Toy")) 
+	{
+		ms[0]*=1.25;
+		ms[1]*=1.25;
+	}
+    if (trinkets.includes("Ribbon Spool")) 
+	{
+		ms[0]*=1.1;
+		ms[1]*=1.1;
+	}
+    if (trinkets.includes("Speedy Shoes")) 
+	{
+		ms[0]*=1.05;
+		ms[1]*=1.05;
+	}
+    if (trinkets.includes("Vanity Mirror")) 
+	{
+		ms[1]*=1.3;
+	}
+	return ms;
 }
 
-function setSkill(stars) 
-{
-    skillCheck = stars;
-    updateStars('skillStars', stars);
-}
+///////////////Toons and trinkets
 
-function updateStars(elementId, stars) 
-{
-    const starElements = document.getElementById(elementId).children;
-    for (let i = 0; i < starElements.length; i++) {
-        starElements[i].src = i < stars ? 'assets/star-on.png' : 'assets/star-off.png';
-    }
-}
-//======================= TEST DOWN HERE ============================
 function selectTrinket(trinket, element) {
     const selectedTrinkets = document.querySelectorAll('.selected-trinket');
     for (let selected of selectedTrinkets) {
@@ -219,6 +279,90 @@ function updateTrinkets() {
     document.getElementById('trinket1Name').textContent = trinket1Name;
     document.getElementById('trinket2Name').textContent = trinket2Name;
 }
+
+
+function removeTrinket(element) {
+    element.innerHTML = ''; // Clear the trinket
+    element.classList.remove('has-image');
+    updateTrinkets();
+}
+
+
+function LuckyCoin() {
+    let chance = Math.random();
+    if (chance < 0.4 || consistentCoin) 
+    {
+        return Math.random() > 0.5 ? "Skill" : "Extraction";
+    }
+    return "None"
+}
+
+const twisteds = 
+[
+	{ name: "Twisted Boxten", speed: 18 },
+	{ name: "Twisted Shrimpo", speed: 16.5 },
+	{ name: "Twisted Tisha", speed: 18 },
+	{ name: "Twisted Toodles", speed: 20 },
+	{ name: "Twisted Brightney", speed: 18 },
+	{ name: "Twisted Teagan", speed: 18.5 },
+	{ name: "Twisted Finn", speed: 15.5 },
+	{ name: "Twisted Goob", speed: 16 },
+	{ name: "Twisted Scraps", speed: 16 },
+	{ name: "Twisted Flutter", speed: 18.5 },
+	{ name: "Twisted Glisten", speed: 24 },
+	{ name: "Twisted Gigi", speed: 19 },
+	{ name: "Twisted Astro", speed: 19 },
+	{ name: "Twisted Pebble", speed: 25 },
+	{ name: "Twisted Vee", speed: 18 },
+	{ name: "Twisted Shelly", speed: 20 },
+	{ name: "Twisted Sprout", speed: 17 },
+	{ name: "Twisted Dandy", speed: 16.5 }
+];
+
+twisteds.sort((a, b) => b.speed - a.speed);
+const twistedContainer = document.getElementById('twistedContainer');
+
+twisteds.forEach(twisted => 
+{
+	const box = document.createElement('div');
+	box.className = 'twisted-box';
+	box.textContent = `${twisted.name}: Speed ${twisted.speed}`;
+	twistedContainer.appendChild(box);
+});
+//STATS AND STAT UPDATES
+
+function selectToon(Skill, Extraction, Speed, boxten) 
+{
+	console.log("boxten value:", boxten);
+    const button = document.getElementById('extract');
+    if (boxten === 'Boxten') 
+	{
+		console.log("I MADE IT");
+        isBoxten = true;
+        button.textContent = "Extract (WARNING: HAS BOXTEN PASSIVE!)";
+    } 
+	else 
+	{
+		isBoxten = false;
+        button.textContent = "Extract";
+    }
+
+    setSkill(Skill);
+    setExtraction(Extraction);
+    setMovementSpeed(Speed);
+}
+
+function updateStars(elementId, stars) 
+{
+    const starElements = document.getElementById(elementId).children;
+    for (let i = 0; i < starElements.length; i++) 
+	{
+        starElements[i].src = i < stars ? 'assets/star-on.png' : 'assets/star-off.png';
+    }
+}
+
+
+//======================= TEST DOWN HERE ============================
 
 function runSimulations() 
 {
@@ -250,46 +394,49 @@ function runSimulations()
 	document.getElementById('trinket2Result').textContent = typeof resultsTrinket2 === 'number' ? resultsTrinket2.toFixed(1) : 'N/A';
 	document.getElementById('bothResult').textContent = typeof resultsBothTrinkets === 'number' ? resultsBothTrinkets.toFixed(1) : 'N/A';
 
-	document.getElementById('machinesCompleted').textContent = numberOfMachines;
+	//document.getElementById('machinesCompleted').textContent = numberOfMachines; seems unncessesary
 
 	document.getElementById('noneSC').textContent = typeof scNoTrinket === 'number' ? Math.floor(scNoTrinket) : 'N/A';
 	document.getElementById('trinket1SC').textContent = typeof scTrinket1 === 'number' ? Math.floor(scTrinket1) : 'N/A';
 	document.getElementById('trinket2SC').textContent = typeof scTrinket2 === 'number' ? Math.floor(scTrinket2) : 'N/A';
 	document.getElementById('bothSC').textContent = typeof scBothTrinkets === 'number' ? Math.floor(scBothTrinkets) : 'N/A';
 
-	document.getElementById('machinesCompleted').textContent = numberOfMachines;
+	
+	//Then this is for movementspeed checks which was realy easy.
+	let movementSpeed = [0.0, 0.0];
+    movementSpeed = getMovementSpeed([trinket1, trinket2]);
+	document.getElementById('walkSpeed').textContent = movementSpeed[0].toFixed(2); 
+	document.getElementById('runSpeed').textContent = movementSpeed[1].toFixed(2);
+	
+	twistedContainer.innerHTML = ''; //clears all effects
+
+	twisteds.forEach(twisted => {
+		const box = document.createElement('div');
+		box.className = 'twisted-box';
+		box.textContent = `${twisted.name}: Speed ${twisted.speed}`;
+
+		if (twisted.speed <= movementSpeed[0]) 
+		{
+			//wiki said by 20-25%
+			if (twisted.speed*1.225 <= movementSpeed[0]) 
+			{
+				box.classList.add('blue');
+			}
+			else
+			{
+				box.classList.add('green');
+			}
+		} 
+		else if (twisted.speed <= movementSpeed[1]) 
+		{
+			box.classList.add('orange');
+		} 
+		else 
+		{
+			box.classList.add('red');
+		}
+
+		twistedContainer.appendChild(box);
+	});
 }
 
-
-function removeTrinket(element) {
-    element.innerHTML = ''; // Clear the trinket
-    element.classList.remove('has-image');
-    updateTrinkets();
-}
-
-function selectToon(Skill, Extraction, boxten) 
-{
-    console.log(Skill, Extraction, boxten); 
-    const button = document.getElementById('extract');
-
-    if (boxten == 'true') 
-	{
-		console.log("I MADE IT");
-        isboxten = true;
-        button.textContent = "Extract (WARNING: HAS BOXTEN PASSIVE!)";
-    } 
-	else 
-	{
-    isboxten = false;
-        button.textContent = "Extract";
-    }
-
-    setSkill(Skill);
-    setExtraction(Extraction);
-}
-
-function selectToon(Skill, Extraction)
-{
-    setSkill(Skill) 
-	setExtraction(Extraction) 
-}

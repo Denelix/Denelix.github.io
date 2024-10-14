@@ -121,3 +121,29 @@ body {
 .selected-trinket.has-image::after {
     display: none;
 }
+
+.twisted-box {
+	margin: 5px 0;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	color: #fff;
+}
+.legend {
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
+	color: white;
+	margin-top: 10px;
+	color: darkgrey;
+	margin-top: 10px;
+}
+.green { background-color: green; }
+.orange { background-color: orange; }
+.red { background-color: red; }
+.blue { background-color: blue; }
+.twisted-container {
+	margin-top: 20px;
+	max-height: 200px;
+	overflow-y: auto;
+}
