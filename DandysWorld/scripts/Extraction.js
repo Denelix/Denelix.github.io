@@ -15,7 +15,8 @@ let isShellyBoosted = false
 let isBoxten = false
 let successfulSkillChecks = 0
 let ShellyBoost = 65
-let cooldown = 5
+let cooldown = 0
+let extractionCards = 0
 
 //Get sets and defaults
 
@@ -64,6 +65,21 @@ function setMovementSpeed(stars)
     updateStars('movementSpeedStars', stars);
 }
 
+function setExtractionCard(cards) 
+{
+	if (extractionCards==cards)
+	{
+		extractionCards=0
+		updateCards('extractionCards', 0);
+		//If select same one twice it just removes it.
+	}
+	else
+	{
+		extractionCards = cards;
+		updateCards('extractionCards', cards);
+	}
+}
+
 
 //=============================Calculations :nerd:================================
 function runSimulation(trinkets) 
@@ -102,7 +118,7 @@ function floorSimulation(trinkets)
 function fillMachine(trinkets, completedMachines) 
 {
     let time = 0;
-    let maxCompletion = 45;
+    let maxCompletion = 45-(extractionCards*5);
     let currentCompletion = 0.0;
     let extraction = getPerSecondUnits(extractionSpeed);
 	ShellyBoost = 65
@@ -139,7 +155,6 @@ function fillMachine(trinkets, completedMachines)
     while (currentCompletion < maxCompletion) 
     {
         time += 1;
-        cooldown += -1;
         //Does skillcheck and extraction at same time.
         currentCompletion += extraction + simulateSkillCheck(trinkets,);
 		if (isShellyBoosted && (ShellyBoost>50)) 
@@ -152,7 +167,9 @@ function fillMachine(trinkets, completedMachines)
 			ShellyBoost=65;
 		}
 		ShellyBoost += -1;
+        cooldown += -1;
     }
+	cooldown =0; //By the time you reach a new machine most likely this will be back to 0.
     return time;
 }
 
@@ -190,9 +207,10 @@ function simulateSkillCheck(trinkets)
         let chance = Math.random();
         if (chance < baseSkillCheckChance+skillCheckBonus)
         {
-            cooldown = 3; //includes skill check doing and fading away and the actual cooldown between skillchecks
+            cooldown = 4; //includes skill check doing and fading away and the actual cooldown between skillchecks
 			successfulSkillChecks+=1;
             return skillCheckValue+skillValueBonus;
+			//Solved and 100% accurate now. SkillChecks  happed every 5 seconds and every 1 second if skillcheckchance is false.
         }
         return 0;
     }
@@ -358,6 +376,15 @@ function updateStars(elementId, stars)
     for (let i = 0; i < starElements.length; i++) 
 	{
         starElements[i].src = i < stars ? 'assets/star-on.png' : 'assets/star-off.png';
+    }
+}
+
+function updateCards(elementId, stars) 
+{
+    const starElements = document.getElementById(elementId).children;
+    for (let i = 0; i < starElements.length; i++) 
+	{
+        starElements[i].src = i < stars ? 'assets/extract-on.png' : 'assets/extract-off.png';
     }
 }
 
