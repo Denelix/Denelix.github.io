@@ -6,10 +6,9 @@ let skillCheck = 1;
 let consistentCoin = false
 let tests = 1500;
 
-let luckyCoinStat = "None"
+//let luckyCoinStat = "None"
 let skillCheckValue = 0.5 + (skillCheck * 0.5);
 let baseSkillCheckChance = 0.25;
-let AllTrinkets = ["Lucky Coin", "Participation Award"]; // Example trinkets
 let numberOfPlayers = 1
 let isShellyBoosted = false
 let isBoxten = false
@@ -245,6 +244,11 @@ function getMovementSpeed(trinkets)
     if (trinkets.includes("Dog Plush")) 
 	{
 		ms[0]*=1.1;
+	}
+    if (trinkets.includes("Lucky Coin")) 
+	{
+		ms[0]*=1.12;
+		ms[1]*=1.12;
 	}
     if (trinkets.includes("Pink Bow")) 
 	{
