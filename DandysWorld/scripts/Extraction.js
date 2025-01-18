@@ -12,6 +12,7 @@ let baseSkillCheckChance = 0.25;
 let numberOfPlayers = 1
 let isShellyBoosted = false
 let isBoxten = false
+let isLooey = false
 let successfulSkillChecks = 0
 let ShellyBoost = 65
 let cooldown = 0
@@ -259,10 +260,15 @@ function getMovementSpeed(trinkets)
 		ms[0]*=1.25;
 		ms[1]*=1.25;
 	}
-    if (trinkets.includes("Ribbon Spool")) 
+    if (trinkets.includes("Ribbon Spool") || trinkets.includes("Clown Horn") ) 
 	{
 		ms[0]*=1.1;
 		ms[1]*=1.1;
+	}
+    if (trinkets.includes("Coal") ) 
+	{
+		ms[0]*=.8;
+		ms[1]*=.8;
 	}
     if (trinkets.includes("Speedy Shoes")) 
 	{
@@ -273,6 +279,14 @@ function getMovementSpeed(trinkets)
 	{
 		ms[1]*=1.3;
 	}
+    if (isLooey) 
+    {
+		if (currentHealth < 3 && currentHealth > 0)
+		{
+			ms[0]*=1+.2*(3-currentHealth);
+			ms[1]*=1+.2*(3-currentHealth);
+		}
+    }
 	return ms;
 }
 
@@ -324,6 +338,7 @@ const twisteds =
 	{ name: "Twisted Boxten", speed: 18 },
 	{ name: "Twisted Shrimpo", speed: 16.5 },
 	{ name: "Twisted Tisha", speed: 18 },
+	{ name: "Twisted Looey", speed: 18 },
 	{ name: "Twisted Toodles", speed: 20 },
 	{ name: "Twisted Brightney", speed: 18 },
 	{ name: "Twisted Teagan", speed: 18.5 },
@@ -335,6 +350,11 @@ const twisteds =
 	{ name: "Twisted Gigi", speed: 19 },
 	{ name: "Twisted Astro", speed: 19 },
 	{ name: "Twisted Pebble", speed: 25 },
+	{ name: "Twisted Coal", speed: 15 },
+	{ name: "Twisted Ginger", speed: 15 },
+	{ name: "Twisted Rudie", speed: 15 },
+	{ name: "Twisted Bobette", speed: 24.5 },
+	{ name: "Twisted Coal-Blackout", speed: 25 },
 	{ name: "Twisted Vee", speed: 18 },
 	{ name: "Twisted Shelly", speed: 20 },
 	{ name: "Twisted Sprout", speed: 17 },
@@ -359,13 +379,18 @@ function selectToon(Skill, Extraction, Speed, boxten)
     const button = document.getElementById('extract');
     if (boxten === 'Boxten') 
 	{
-		console.log("I MADE IT");
         isBoxten = true;
         button.textContent = "Extract (WARNING: HAS BOXTEN PASSIVE!)";
+    } 
+    else if (boxten === 'Looey') 
+	{
+        isLooey = true;
+        button.textContent = "Extract (WARNING: LOOEY HAS PASSIVE!)";
     } 
 	else 
 	{
 		isBoxten = false;
+        isLooey = false;
         button.textContent = "Extract";
     }
 
@@ -397,8 +422,16 @@ function updateCards(elementId, stars)
 
 function runSimulations() 
 {
+		const numberOfPlayersElement = document.getElementById('players');
+	if (numberOfPlayersElement) {
+		const numberOfPlayers = numberOfPlayersElement.value;
+		console.log(numberOfPlayers);
+	} else {
+		console.error("Element with ID 'players' not found.");
+	}
 	skillCheckValue = 0.5 + (skillCheck * 0.5);
     numberOfMachines = document.getElementById('machines').value;
+    currentHealth = document.getElementById('health').value;
     numberOfPlayers = document.getElementById('players').value;
     isShellyBoosted = document.getElementById('Shelly').checked;
     consistentCoin = document.getElementById('consistent').checked;
