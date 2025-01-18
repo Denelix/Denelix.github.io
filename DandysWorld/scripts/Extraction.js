@@ -290,7 +290,7 @@ function getMovementSpeed(trinkets)
 	return ms;
 }
 
-///////////////Toons and trinkets
+///////////////Toons and trinkets :D
 
 function selectTrinket(trinket, element) {
     const selectedTrinkets = document.querySelectorAll('.selected-trinket');
