@@ -147,3 +147,49 @@ body {
 	max-height: 200px;
 	overflow-y: auto;
 }
+
+.bottom-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    z-index: 9999;
+    align-items: center;
+}
+
+#extract {
+    width: 75vw;
+    max-width: 500px;
+    height: 80px;
+    font-size: 2em;
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 12px 0 #0006;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#helpBtn {
+    width: 80px;
+    height: 80px;
+    font-size: 2.5em;
+    background: #1565c0;
+    color: white;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 2px 12px 0 #0006;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+#helpBtn:hover {
+    background: #1976d2;
+}

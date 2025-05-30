@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulation</title>
+    <title>DW Calculator</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div class="container">
         <div class="settings">
 			<!-- PRESETS -->
-            <img src="https://avatars.githubusercontent.com/u/69168805?v=4" alt="Image" class="top-image">
+            <a href="https://github.com/Denelix" target="_blank">
+				<img src="https://avatars.githubusercontent.com/u/69168805?v=4" alt="Image" class="top-image">
+			</a>
                 <div>‎ </div>
                 <div>‎ </div>
 			<div class="preset-boxes">
@@ -68,6 +70,9 @@
 				<div class="preset" onclick="selectToon(3, 1, 5, 'Pebble')">
 					<img src="assets/Toons/Pebble_Render.webp" alt="Pebble">
 				</div>
+				<div class="preset" onclick="selectToon(4, 5, 2, 'Vee')">
+					<img src="assets/Toons/Vee_Render.webp" alt="Vee">
+				</div>
 				<div class="preset" onclick="selectToon(5, 3, 3, 'Shelly')">
 					<img src="assets/Toons/Shelly_Render.webp" alt="Shelly">
 				</div>
@@ -89,8 +94,26 @@
 				<div class="preset" onclick="selectToon(2, 2, 4, 'Coal')">
 					<img src="assets/Toons/Coal_Render.webp" alt="Coal">
 				</div>
-				<div class="preset" onclick="selectToon(4, 2, 3, 'Bobette')">
+				<div class="preset" onclick="selectToon(3, 5, 4, 'Yatta')">
+					<img src="assets/Toons/Yatta_Render.webp" alt="Yatta">
+				</div>
+				<div class="preset" onclick="selectToon(4, 2, 3, 'Looey')">
 					<img src="assets/Toons/Bobette_Render.webp" alt="Bobette">
+				</div>
+				<div class="preset" onclick="selectToon(3, 3, 3, 'Eggson')">
+					<img src="assets/Toons/Eggson_Render.webp" alt="Eggson">
+				</div>
+				<div class="preset" onclick="selectToon(2, 3, 4, 'Flyte')">
+					<img src="assets/Toons/Flyte_Render.webp" alt="Flyte">
+				</div>
+				<div class="preset" onclick="selectToon(3, 2, 4, 'Cocoa')">
+					<img src="assets/Toons/Cocoa_Render.webp" alt="Cocoa">
+				</div>
+				<div class="preset" onclick="selectToon(1, 2, 5, 'Bassie')">
+					<img src="assets/Toons/Bassie_Render.webp" alt="Bassie">
+				</div>
+				<div class="preset" onclick="selectToon(1, 2, 4, 'Blot')">
+					<img src="assets/Toons/Blot_Render.webp" alt="Blot">
 				</div>
 				<div class="preset" onclick="selectToon(5, 5, 5, 'Dandy')">
 					<img src="assets/Toons/Dandy_Render.webp" alt="Dandy">
@@ -154,7 +177,10 @@
             <div>
 				<label>Consistent Coin? (Lucky Coin always Extract or Skill boost): <input type="checkbox" id="consistent"></label>
             </div>
-            <button id="extract" onclick="runSimulations()">Extract</button>
+            <div class="bottom-buttons">
+				<button id="extract" onclick="runSimulations()">Calculate</button>
+				<button id="helpBtn" onclick="help()" title="Help">?</button>
+			</div>
             <h3>Selected Trinkets</h3>
             <div class="selected-trinkets">
                 <div class="selected-trinket" onclick="removeTrinket(this)"></div>
@@ -234,19 +260,21 @@
             <h3>‎ </h3>
             <h3>Patch Notes</h3>
             <div class="result-box">
-			1.0 <br>
-			+Initial release
+			1.5.1 <br>
+			+Eggson passive added. (He's basically a 4 extraction)<br>
+			~Patchnotes Flipped. (New releases at top now)
 			</div>
             <div class="result-box">
-			1.1.2 <br>
-			+Added average "Skill Checks" done. <br>
-			~less decimals. 
-			~Skill Check cooldown is now checked second and is properly going on cooldown
+			1.5 <br>
+			+Added new Yatta, Blot, and Easter Characters.<br>
+			~Added back Vee... Sorry Vee players...<br>
+			~Extract button changed to BIG Calculate box on user screen ALL THE TIME!<br>
 			</div>
             <div class="result-box">
-			1.2 <br>
-			+Added Movementspeed Chart and Trinkets that modify movementspeed! <br>
-			!If you want to compare who you can run or walk from it's finally here!
+			1.4 <br>
+			+Added new Characters<br>
+			+Added new Items<br>
+			~Fixed icons They are local now<br>
 			</div>
             <div class="result-box">
 			1.3 <br>
@@ -258,10 +286,22 @@
 			-Removed Placeholder character
 			</div>
             <div class="result-box">
-			1.4 <br>
-			+Added new Characters<br>
-			+Added new Items<br>
-			~Fixed icons They are local now<br>
+			1.2 <br>
+			+Added Movementspeed Chart and Trinkets that modify movementspeed! <br>
+			!If you want to compare who you can run or walk from it's finally here!
+			</div>
+            <div class="result-box">
+			1.1.2 <br>
+			+Added average "Skill Checks" done. <br>
+			~less decimals. 
+			~Skill Check cooldown is now checked second and is properly going on cooldown
+			</div>
+            <div class="result-box">
+			1.0 <br>
+			+Initial release
+			</div>
+            <div class="result-box">
+			Ultrawide? Sideways Phone? <br>
 			</div>
         </div>
     </div>

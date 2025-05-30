@@ -13,6 +13,7 @@ let numberOfPlayers = 1
 let isShellyBoosted = false
 let isBoxten = false
 let isLooey = false
+let isEggson = false
 let successfulSkillChecks = 0
 let ShellyBoost = 65
 let cooldown = 0
@@ -132,6 +133,11 @@ function fillMachine(trinkets, completedMachines)
         extraction= extraction+(0.06*numberOfPlayers);
     }
 	
+    if (isEggson) 
+    {
+		maxCompletion=maxCompletion*.9
+    }
+	
     if (trinkets.includes("Machine Manual")) 
     {
         extraction *=1.05;
@@ -154,7 +160,6 @@ function fillMachine(trinkets, completedMachines)
     //TRINKET IMPLEMENTATION!!!!
     while (currentCompletion < maxCompletion) 
     {
-        time += 1;
         //Does skillcheck and extraction at same time.
         currentCompletion += extraction + simulateSkillCheck(trinkets,);
 		if (isShellyBoosted && (ShellyBoost>50)) 
@@ -168,6 +173,7 @@ function fillMachine(trinkets, completedMachines)
 		}
 		ShellyBoost += -1;
         cooldown += -1;
+        time += 1;
     }
 	cooldown =0; //By the time you reach a new machine most likely this will be back to 0.
     return time;
@@ -380,18 +386,30 @@ function selectToon(Skill, Extraction, Speed, boxten)
     if (boxten === 'Boxten') 
 	{
         isBoxten = true;
-        button.textContent = "Extract (WARNING: HAS BOXTEN PASSIVE!)";
+        isLooey = false;
+        isEggson = false;
+        button.textContent = "Calculate (WARNING: BOXTEN PASSIVE IS ACTIVE!)";
     } 
     else if (boxten === 'Looey') 
 	{
         isLooey = true;
-        button.textContent = "Extract (WARNING: LOOEY HAS PASSIVE!)";
+        isEggson = false;
+		isBoxten = false;
+        button.textContent = "Calculate (WARNING: LOOEY PASSIVE IS ACTIVE!)";
+    } 
+    else if (boxten === 'Eggson') 
+	{
+        isEggson = true;
+        isLooey = false;
+		isBoxten = false;
+        button.textContent = "Calculate (WARNING: EGGSON PASSIVE IS ACTIVE!)";
     } 
 	else 
 	{
 		isBoxten = false;
         isLooey = false;
-        button.textContent = "Extract";
+        isEggson = false;
+        button.textContent = "Calculate";
     }
 
     setSkill(Skill);
@@ -420,6 +438,11 @@ function updateCards(elementId, stars)
 
 //======================= TEST DOWN HERE ============================
 
+function help() 
+{
+    alert("- Select Toon for pre-set stats (stars)\n- Click on the stars manually for custom stat changes \n- Select the trinkets you want and double click on selected trinkets to remove one. \n- Click the now HUGE calculate button \n look at the top right of the website to see your results and min max... nerd.");
+}
+	
 function runSimulations() 
 {
 		const numberOfPlayersElement = document.getElementById('players');
