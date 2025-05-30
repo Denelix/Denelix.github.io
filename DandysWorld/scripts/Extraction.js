@@ -165,7 +165,6 @@ function fillMachine(trinkets, completedMachines)
 		if (isShellyBoosted && (ShellyBoost>50)) 
 		{
 			currentCompletion += extraction*0.75;
-			console.log(ShellyBoost);
 		}
 		if (ShellyBoost<0)
 		{
