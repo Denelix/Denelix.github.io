@@ -361,10 +361,16 @@ const twisteds =
 	{ name: "Twisted Rudie", speed: 15 },
 	{ name: "Twisted Bobette", speed: 24.5 },
 	{ name: "Twisted Coal-Blackout", speed: 25 },
+	{ name: "Twisted Vee+Slow", speed: 22.5 },
 	{ name: "Twisted Vee", speed: 18 },
 	{ name: "Twisted Shelly", speed: 20 },
 	{ name: "Twisted Sprout", speed: 17 },
-	{ name: "Twisted Dandy", speed: 16.5 }
+	{ name: "Twisted Dandy", speed: 16.5 },
+	{ name: "Twisted Yatta", speed: 19 },
+	{ name: "Twisted Bessie", speed: 19 },
+	{ name: "Twisted Flyte", speed: 17 },
+	{ name: "Twisted Eggson", speed: 18 },
+	{ name: "Twisted Eggson", speed: 18 }
 ];
 
 twisteds.sort((a, b) => b.speed - a.speed);
@@ -505,7 +511,8 @@ function runSimulations()
 		if (twisted.speed <= movementSpeed[0]) 
 		{
 			//wiki said by 20-25%
-			if (twisted.speed*1.225 <= movementSpeed[0]) 
+			//best odds are better. and most twisteds are 25% faster anyways so 25%.
+			if (twisted.speed*1.25 <= movementSpeed[0]) 
 			{
 				box.classList.add('blue');
 			}
