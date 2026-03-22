@@ -373,7 +373,7 @@ var twisteds = [
     { name: "Twisted Coal", speed: 15 },
     { name: "Twisted Ginger", speed: 15 },
     { name: "Twisted Rudie", speed: 15 },
-    { name: "Twisted Bobette", speed: 24.5 },
+    { name: "Twisted Bobette", speed: 25 },
     { name: "Twisted Coal-Blackout", speed: 25 },
     { name: "Twisted Vee", speed: 18 },
     { name: "Twisted Shelly", speed: 20 },
