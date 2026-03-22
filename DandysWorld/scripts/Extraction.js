@@ -246,43 +246,129 @@ function rollLockedStat(lock)
 }
 
 // ===== CONSUMABLE USAGE =====
+// function useExtractionConsumables(machineType, inv, buffs, trinkets) 
+// {
+    // if (inv.jawbreaker && inv.jawbreaker.uses > 0) 
+	// {
+        // inv.jawbreaker.uses--;
+        // var st = rollRandomStat();
+        // addBuff(buffs, st, st === 'skillCheckBonus' ? 0.75 : 1.75, inv.jawbreaker.baseDuration);
+    // }
+    // if (inv.gumballs && inv.gumballs.uses > 0) 
+	// {
+        // var u = Math.min(inv.gumballs.uses, 3);
+        // for (var i = 0; i < u; i++) 
+	
+// {
+            // inv.gumballs.uses--;
+            // var st2 = rollRandomStat();
+            // addBuff(buffs, st2, st2 === 'skillCheckBonus' ? 0.10 : 1.10, inv.gumballs.baseDuration);
+        // }
+    // }
+    // if (inv.bonbon && inv.bonbon.uses > 0) 
+	// {
+        // inv.bonbon.uses--;
+        // addBuff(buffs, 'extractionMult', 1.5, inv.bonbon.baseDuration);
+        // addBuff(buffs, 'speedMult', 1.25, inv.bonbon.baseDuration);
+    // }
+    // if (inv.skillCheckCandy && inv.skillCheckCandy.uses > 0) 
+	// {
+        // inv.skillCheckCandy.uses--;
+        // addBuff(buffs, 'skillCheckBonus', 0.25, inv.skillCheckCandy.baseDuration);
+    // }
+    // if (inv.extractionCandy && inv.extractionCandy.uses > 0) 
+	// {
+        // inv.extractionCandy.uses--;
+        // addBuff(buffs, 'extractionMult', 1.5, inv.extractionCandy.baseDuration);
+    // }
+    // if (inv.instructionsScroll && inv.instructionsScroll.uses > 0) 
+	// {
+        // inv.instructionsScroll.uses--;
+        // addBuff(buffs, 'extractionMult', 2.0, inv.instructionsScroll.baseDuration);
+    // }
+// }
+
+// function useTreadmillConsumables(inv, buffs, trinkets) 
+// {
+    // var sg = 0;
+    // if (inv.jawbreaker && inv.jawbreaker.uses > 0) 
+	// {
+        // inv.jawbreaker.uses--;
+        // var st = rollRandomStat();
+        // addBuff(buffs, st, st === 'skillCheckBonus' ? 0.75 : 1.75, inv.jawbreaker.baseDuration);
+    // }
+    // if (inv.gumballs && inv.gumballs.uses > 0) 
+	// {
+        // var u = Math.min(inv.gumballs.uses, 3);
+        // for (var i = 0; i < u; i++) 
+	
+// {
+            // inv.gumballs.uses--;
+            // var st2 = rollRandomStat();
+            // addBuff(buffs, st2, st2 === 'skillCheckBonus' ? 0.10 : 1.10, inv.gumballs.baseDuration);
+        // }
+    // }
+    // if (inv.speedCandy && inv.speedCandy.uses > 0) 
+	// {
+        // inv.speedCandy.uses--;
+        // addBuff(buffs, 'speedMult', 1.25, inv.speedCandy.baseDuration);
+    // }
+    // if (inv.staminaCandy && inv.staminaCandy.uses > 0) 
+	// {
+        // inv.staminaCandy.uses--;
+        // addBuff(buffs, 'staminaRegenMult', 1.5, inv.staminaCandy.baseDuration);
+    // }
+    // if (inv.proteinBar && inv.proteinBar.uses > 0) 
+	// {
+        // inv.proteinBar.uses--;
+        // addBuff(buffs, 'staminaRegenMult', 2.5, inv.proteinBar.baseDuration);
+    // }
+    // if (inv.chocolate && inv.chocolate.uses > 0) 
+	// {
+        // inv.chocolate.uses--;
+        // addBuff(buffs, 'walkSpeedMult', 1.2, inv.chocolate.baseDuration);
+        // sg += 25;
+    // }
+    // return sg;
+// }
+
+
+//to loop and use all items 
 function useExtractionConsumables(machineType, inv, buffs, trinkets) 
 {
-    if (inv.jawbreaker && inv.jawbreaker.uses > 0) 
-	{
+    while (inv.jawbreaker && inv.jawbreaker.uses > 0) 
+    {
         inv.jawbreaker.uses--;
         var st = rollRandomStat();
         addBuff(buffs, st, st === 'skillCheckBonus' ? 0.75 : 1.75, inv.jawbreaker.baseDuration);
     }
     if (inv.gumballs && inv.gumballs.uses > 0) 
-	{
-        var u = Math.min(inv.gumballs.uses, 3);
-        for (var i = 0; i < u; i++) 
-	
-{
+    {
+        while (inv.gumballs.uses > 0)
+        {
             inv.gumballs.uses--;
             var st2 = rollRandomStat();
             addBuff(buffs, st2, st2 === 'skillCheckBonus' ? 0.10 : 1.10, inv.gumballs.baseDuration);
         }
     }
-    if (inv.bonbon && inv.bonbon.uses > 0) 
-	{
+    while (inv.bonbon && inv.bonbon.uses > 0) 
+    {
         inv.bonbon.uses--;
         addBuff(buffs, 'extractionMult', 1.5, inv.bonbon.baseDuration);
         addBuff(buffs, 'speedMult', 1.25, inv.bonbon.baseDuration);
     }
-    if (inv.skillCheckCandy && inv.skillCheckCandy.uses > 0) 
-	{
+    while (inv.skillCheckCandy && inv.skillCheckCandy.uses > 0) 
+    {
         inv.skillCheckCandy.uses--;
         addBuff(buffs, 'skillCheckBonus', 0.25, inv.skillCheckCandy.baseDuration);
     }
-    if (inv.extractionCandy && inv.extractionCandy.uses > 0) 
-	{
+    while (inv.extractionCandy && inv.extractionCandy.uses > 0) 
+    {
         inv.extractionCandy.uses--;
         addBuff(buffs, 'extractionMult', 1.5, inv.extractionCandy.baseDuration);
     }
-    if (inv.instructionsScroll && inv.instructionsScroll.uses > 0) 
-	{
+    while (inv.instructionsScroll && inv.instructionsScroll.uses > 0) 
+    {
         inv.instructionsScroll.uses--;
         addBuff(buffs, 'extractionMult', 2.0, inv.instructionsScroll.baseDuration);
     }
@@ -291,40 +377,38 @@ function useExtractionConsumables(machineType, inv, buffs, trinkets)
 function useTreadmillConsumables(inv, buffs, trinkets) 
 {
     var sg = 0;
-    if (inv.jawbreaker && inv.jawbreaker.uses > 0) 
-	{
+    while (inv.jawbreaker && inv.jawbreaker.uses > 0) 
+    {
         inv.jawbreaker.uses--;
         var st = rollRandomStat();
         addBuff(buffs, st, st === 'skillCheckBonus' ? 0.75 : 1.75, inv.jawbreaker.baseDuration);
     }
     if (inv.gumballs && inv.gumballs.uses > 0) 
-	{
-        var u = Math.min(inv.gumballs.uses, 3);
-        for (var i = 0; i < u; i++) 
-	
-{
+    {
+        while (inv.gumballs.uses > 0)
+        {
             inv.gumballs.uses--;
             var st2 = rollRandomStat();
             addBuff(buffs, st2, st2 === 'skillCheckBonus' ? 0.10 : 1.10, inv.gumballs.baseDuration);
         }
     }
-    if (inv.speedCandy && inv.speedCandy.uses > 0) 
-	{
+    while (inv.speedCandy && inv.speedCandy.uses > 0) 
+    {
         inv.speedCandy.uses--;
         addBuff(buffs, 'speedMult', 1.25, inv.speedCandy.baseDuration);
     }
-    if (inv.staminaCandy && inv.staminaCandy.uses > 0) 
-	{
+    while (inv.staminaCandy && inv.staminaCandy.uses > 0) 
+    {
         inv.staminaCandy.uses--;
         addBuff(buffs, 'staminaRegenMult', 1.5, inv.staminaCandy.baseDuration);
     }
-    if (inv.proteinBar && inv.proteinBar.uses > 0) 
-	{
+    while (inv.proteinBar && inv.proteinBar.uses > 0) 
+    {
         inv.proteinBar.uses--;
         addBuff(buffs, 'staminaRegenMult', 2.5, inv.proteinBar.baseDuration);
     }
-    if (inv.chocolate && inv.chocolate.uses > 0) 
-	{
+    while (inv.chocolate && inv.chocolate.uses > 0) 
+    {
         inv.chocolate.uses--;
         addBuff(buffs, 'walkSpeedMult', 1.2, inv.chocolate.baseDuration);
         sg += 25;
@@ -597,7 +681,7 @@ function simulateExtraction(machineType, trinkets, inventory, activeBuffs, machi
     if (trinkets.indexOf("Lucky Coin") >= 0 && luckyCoinStat === "Extraction") baseExtraction *= 1.12;
 
     if (trinkets.indexOf("Wrench") >= 0 && machineIndex === 0) currentCompletion += maxCompletion / 3;
-    if (inventory.jumperCable && inventory.jumperCable.uses > 0)
+	while (inventory.jumperCable && inventory.jumperCable.uses > 0) //use all.
     {
         inventory.jumperCable.uses--;
         currentCompletion += maxCompletion * 0.33;
