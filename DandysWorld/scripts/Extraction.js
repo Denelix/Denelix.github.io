@@ -591,7 +591,7 @@ function simulateExtraction(machineType, trinkets, inventory, activeBuffs, machi
     var baseExtraction = getPerSecondUnits(extractionSpeed);
     if (confusedLevel > 0 && !Ribecca) baseExtraction *= (1 - confusedLevel * 0.25);
     if (isBoxten) baseExtraction += 0.06 * Math.max(1, numberOfPlayers);
-    if (isEggson) maxCompletion *= 0.9;
+    if (isEggson) maxCompletion *= 0.8;
     if (trinkets.indexOf("Machine Manual") >= 0) baseExtraction *= 1.05;
     if (trinkets.indexOf("Blue Bandana") >= 0) baseExtraction *= 1.075;
     if (trinkets.indexOf("Lucky Coin") >= 0 && luckyCoinStat === "Extraction") baseExtraction *= 1.12;
