@@ -687,7 +687,7 @@ function simulateExtraction(machineType, trinkets, inventory, activeBuffs, machi
 function simulateTreadmill(trinkets, inventory, activeBuffs)
 {
     var time = 0;
-    var treadmillGoal = 1100 * (45 - extractionCards * 5) / 45;
+    var treadmillGoal = 675 * (45 - extractionCards * 5) / 45;
     if (isEggson) treadmillGoal *= 0.9;
 
     var maxStamina = getMaxStamina(trinkets);
