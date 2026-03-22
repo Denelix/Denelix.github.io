@@ -671,6 +671,12 @@ function floorSimulation(trinkets, itemCounts)
         }
         time += machineTime;
         totalExtractionTime += machineTime;
+		
+		
+        if (isShelly) addBuff(activeBuffs, 'extractionMult', 1.25, 10);
+        if (isFinn)   addBuff(activeBuffs, 'extractionMult', 1.33, 10);
+		
+		
         machinesSinceRefill++;
         machineCount++;
     }
@@ -975,6 +981,7 @@ function selectToon(skill, extraction, speed, stamina, toonName)
     isBoxten = false; isLooey = false; isEggson = false;
     isBassie = false; isShelly = false; isSquirm = false;
     isGourdy = false; isEclipse = false; Ribecca = false;
+	isFinn = false;
     currentToonName = toonName;
 
     var label = "Calculate";
@@ -987,6 +994,7 @@ function selectToon(skill, extraction, speed, stamina, toonName)
     else if (toonName === 'Gourdy') { isGourdy = true; label = "Calculate (GOURDY)"; }
     else if (toonName === 'Eclipse') { isEclipse = true; label = "Calculate (ECLIPSE)"; }
     else if (toonName === 'Ribecca') { Ribecca = true; label = "Calculate (RIBECCA)"; }
+	else if (toonName === 'Finn') { isFinn = true; label = "Calculate (FINN)"; }
     if (btn) btn.textContent = label;
 
     skillCheck = skill; updateStars('skillStars', skill);
