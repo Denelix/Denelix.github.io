@@ -547,8 +547,8 @@ function getTravelSpeed(trinkets, toMachineType, activeBuffs, isFirstTravel, aft
     }
     if (isGourdyPanicMS && isFirstTravel) { walk *= 1.3; run *= 1.3; }
     if (isShellyMSBuff && isShelly && afterMachine) { run *= 1.25; walk *= 1.25; }
-    if (isTeammateShelly && afterMachine) { run *= 1.25; walk *= 1.25; }
-    if (isTwistedFinn && afterMachine && !immune) { walk *= 0.5; run *= 0.5; }
+    // if (isTeammateShelly && afterMachine) { run *= 1.25; walk *= 1.25; }
+    // if (isTwistedFinn && afterMachine && !immune) { walk *= 0.5; run *= 0.5; }
 
     if (toMachineType === 'treadmill') return walk;
     return run;
@@ -675,6 +675,8 @@ function floorSimulation(trinkets, itemCounts)
 		
         if (isShelly) addBuff(activeBuffs, 'extractionMult', 1.25, 10);
         if (isFinn)   addBuff(activeBuffs, 'extractionMult', 1.33, 10);
+		if (isShellyMSBuff && isShelly) addBuff(activeBuffs, 'speedMult', 1.25, 10);
+		if (isTeammateShelly)           addBuff(activeBuffs, 'speedMult', 1.25, 10);
 		
 		
         machinesSinceRefill++;
