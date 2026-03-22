@@ -91,10 +91,10 @@ function getMaxStamina(trinkets)
     var max = 100 + staminaStar * 25;
     max += staminaCards * 10;
     if (isDyleCheck) max += 50;
-    if (isEclipseBlackout && isEclipse) max += 50;
     if (trinkets.indexOf("Speedometer") >= 0) max += 15;
     if (trinkets.indexOf("Friendship Bracelet") >= 0) max += 5 * Math.max(1, numberOfPlayers);
     if (trinkets.indexOf("Cooler") >= 0) max += 50;
+    if (isEclipseBlackout && isEclipse) max *= 1.6;
     return max;
 }
 
