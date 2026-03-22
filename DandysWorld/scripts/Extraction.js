@@ -88,7 +88,7 @@ function getSkillCheckValue() { return 0.5 + (skillCheck * 0.5); }
 
 function getMaxStamina(trinkets) 
 {
-    var max = 100 + staminaStar * 25;
+    var max = 75 + staminaStar * 25;
     max += staminaCards * 10;
     if (isDyleCheck) max += 50;
     if (trinkets.indexOf("Speedometer") >= 0) max += 15;
@@ -392,6 +392,12 @@ function useTreadmillConsumables(inv, buffs, trinkets)
             addBuff(buffs, st2, st2 === 'skillCheckBonus' ? 0.10 : 1.10, inv.gumballs.baseDuration);
         }
     }
+    while (inv.bonbon && inv.bonbon.uses > 0) 
+    {
+        inv.bonbon.uses--;
+        addBuff(buffs, 'extractionMult', 1.5, inv.bonbon.baseDuration);
+        addBuff(buffs, 'speedMult', 1.25, inv.bonbon.baseDuration);
+    }
     while (inv.speedCandy && inv.speedCandy.uses > 0) 
     {
         inv.speedCandy.uses--;
@@ -407,12 +413,20 @@ function useTreadmillConsumables(inv, buffs, trinkets)
         inv.proteinBar.uses--;
         addBuff(buffs, 'staminaRegenMult', 2.5, inv.proteinBar.baseDuration);
     }
+
+    while (inv.boxChocolates && inv.boxChocolates.uses > 0) 
+    {
+        inv.boxChocolates.uses--;
+        addBuff(buffs, 'speedMult', 1.15, inv.boxChocolates.baseDuration);
+    }
+
     while (inv.chocolate && inv.chocolate.uses > 0) 
     {
         inv.chocolate.uses--;
         addBuff(buffs, 'walkSpeedMult', 1.2, inv.chocolate.baseDuration);
         sg += 25;
     }
+    return sg;
     return sg;
 }
 
@@ -637,9 +651,8 @@ function floorSimulation(trinkets, itemCounts)
             if (squirmEatCounter % 2 === 0) squirmExtraBuff = true;
         }
 
-        if (inventory.valve && inventory.valve.uses > 0 &&
-            (machines[i] === 'stripe' || machines[i] === 'circle'))
-            {
+        if (inventory.valve && inventory.valve.uses > 0)
+        {
             inventory.valve.uses--;
             time += 1;
             totalExtractionTime += 1;
@@ -797,11 +810,28 @@ function simulateTreadmill(trinkets, inventory, activeBuffs)
         baseWalk *= b; baseRun *= b;
     }
 
+    // Bassie + Bone: permanent 33% walk and run boost
+    if (isBassie && trinkets.indexOf("Bone") >= 0)
+    {
+        baseWalk *= 1.33;
+        baseRun *= 1.33;
+    }
+
     var staminaGain = useTreadmillConsumables(inventory, activeBuffs, trinkets);
     currentStamina = Math.min(maxStamina, currentStamina + staminaGain);
 
-    while (progress < treadmillGoal)
+    // Jumper cables — use once before the loop
+    while (inventory.jumperCable && inventory.jumperCable.uses > 0)
+    {
+        inventory.jumperCable.uses--;
+        progress += treadmillGoal * 0.33;
+    }
 
+    // Sprint/walk state machine — walk until 50% before sprinting again
+    var isWalking = false;
+    var sprintThreshold = maxStamina * 0.5;
+
+    while (progress < treadmillGoal)
     {
         var sMult = getBuffMult(activeBuffs, 'speedMult');
         var wMult = getBuffMult(activeBuffs, 'walkSpeedMult');
@@ -810,33 +840,38 @@ function simulateTreadmill(trinkets, inventory, activeBuffs)
         var eRun = baseRun * sMult;
         var eRegen = baseRegen * rMult;
 
-        if (currentStamina >= 10)
+        if (isWalking && currentStamina >= sprintThreshold)
+        {
+            isWalking = false;
+        }
 
+        if (!isWalking && currentStamina >= 10)
         {
             progress += eRun;
             currentStamina -= 10;
-        } else
+
+            if (currentStamina < 10) isWalking = true;
+        }
+        else
         {
+            // Walking and regenerating
+            isWalking = true;
             progress += eWalk;
             currentStamina = Math.min(maxStamina, currentStamina + eRegen);
         }
 
-        if (isBassie && trinkets.indexOf("Feather Duster") >= 0 && currentStamina <= 0)
-
+        // Bassie + Feather Duster: full stamina refill at low stam
+        if (isBassie && trinkets.indexOf("Feather Duster") >= 0 && currentStamina <= 11)
         {
             currentStamina = maxStamina;
+            isWalking = false;
         }
 
-        if (currentStamina <= 0 && inventory.pop && inventory.pop.uses > 0)
-
+        if (currentStamina <= 11 && inventory.pop && inventory.pop.uses > 0)
         {
             inventory.pop.uses--;
             currentStamina = Math.min(maxStamina, currentStamina + 40);
-        }
-        if (currentStamina < maxStamina * 0.10 && inventory.boxChocolates && inventory.boxChocolates.uses > 0)
-        {
-            inventory.boxChocolates.uses--;
-            addBuff(activeBuffs, 'speedMult', 1.15, inventory.boxChocolates.baseDuration);
+            if (currentStamina >= sprintThreshold) isWalking = false;
         }
 
         time++;
@@ -857,6 +892,8 @@ function getMovementSpeed(trinkets)
     if (trinkets.indexOf("Dog Plush") >= 0) walk *= 1.1;
     if (trinkets.indexOf("Lucky Coin") >= 0 && luckyCoinStat === "MS") { walk *= 1.12; run *= 1.12; }
     if (trinkets.indexOf("Pink Bow") >= 0) run *= 1.075;
+	if (trinkets.indexOf("Bone") >= 0 && !isBassie) { run *= 1.25; walk *= 1.25; }
+	if (trinkets.indexOf("Bone") >= 0 && isBassie) { run *= 1.33; walk *= 1.33; }
     if (trinkets.indexOf("Ribbon Spool") >= 0 || trinkets.indexOf("Clown Horn") >= 0) { walk *= 1.1; run *= 1.1; }
     if (trinkets.indexOf("Coal") >= 0 && !immune) { walk *= 0.9; run *= 0.9; }
     if (trinkets.indexOf("Speedy Shoes") >= 0) { walk *= 1.05; run *= 1.05; }
