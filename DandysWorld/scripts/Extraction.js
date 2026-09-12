@@ -718,7 +718,7 @@ function simulateExtraction(machineType, trinkets, inventory, activeBuffs, machi
     var accuracy = getAccuracy(machineType);
     var scValue = getSkillCheckValue();
 
-    var permSCValueBonus = trinkets.indexOf("Magnifing Glass") >= 0 ? 1.5 : 0;
+    var permSCValueBonus = trinkets.indexOf("Magnifing Glass") >= 0 ? 1.75 : 0;
     var permSCChanceBonus = 0;
     if (trinkets.indexOf("Participation Award") >= 0) permSCChanceBonus += 0.25;
     if (trinkets.indexOf("Blue Bandana") >= 0) permSCChanceBonus -= 0.05;
@@ -856,9 +856,9 @@ function simulateTreadmill(trinkets, inventory, activeBuffs)
         if (!isWalking && currentStamina >= 10)
         {
             progress += eRun;
-            currentStamina -= 10;
+            currentStamina -= 8.33;
 
-            if (currentStamina < 10) isWalking = true;
+            if (currentStamina < 8.33) isWalking = true;
         }
         else
         {
@@ -875,7 +875,7 @@ function simulateTreadmill(trinkets, inventory, activeBuffs)
             isWalking = false;
         }
 
-        if (currentStamina <= 11 && inventory.pop && inventory.pop.uses > 0)
+        if (currentStamina <= 9.33 && inventory.pop && inventory.pop.uses > 0)
         {
             inventory.pop.uses--;
             currentStamina = Math.min(maxStamina, currentStamina + 40);
