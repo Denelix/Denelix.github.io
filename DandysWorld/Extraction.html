@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="An un-official calculator for Dandy's World! Theory Craft to your heart's content!">
-	<meta name="google-site-verification" content="qFV7bMRdfUc638036lP228eXdpkPluhr-VFnD3fs-Co" />
-    <title>Dandy's World Calculator v2.0 (2026 Easter Update)</title>
+    <meta name="description" content="Dandy's World Calculator v2.1 Thanksgiving Update. Updated Toon stats, Twisted chase and Panic speeds, Stamina, Machines, Trinkets, Consumables, Debuffs, and more.">
+    <meta name="robots" content="index, follow">
+    <meta name="google-site-verification" content="qFV7bMRdfUc638036lP228eXdpkPluhr-VFnD3fs-Co" />
+    <link rel="canonical" href="https://denelix.github.io/DandysWorld/Extraction.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Denelix">
+    <meta property="og:title" content="Dandy's World Calculator v2.1 (2026 Thanksgiving Update)">
+    <meta property="og:description" content="Dandy's World Calculator v2.1 Thanksgiving Update. Updated Toon stats, Twisted chase and Panic speeds, Stamina, Machines, Trinkets, Consumables, Debuffs, and more.">
+    <meta property="og:url" content="https://denelix.github.io/DandysWorld/Extraction.html">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/69168805?v=4">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Dandy's World Calculator v2.1 (2026 Thanksgiving Update)">
+    <meta name="twitter:description" content="Dandy's World Calculator v2.1 Thanksgiving Update. Updated Toon stats, Twisted chase and Panic speeds, Stamina, Machines, Trinkets, Consumables, Debuffs, and more.">
+    <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/69168805?v=4">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Dandy's World Calculator v2.1 (2026 Thanksgiving Update)</title>
+    <link rel="icon" href="data:,">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Dandy's World Calculator v2.1 (2026 Thanksgiving Update)",
+        "url": "https://denelix.github.io/DandysWorld/Extraction.html",
+        "description": "Dandy's World Calculator v2.1 Thanksgiving Update. Updated Toon stats, Twisted chase and Panic speeds, Stamina, Machines, Trinkets, Consumables, Debuffs, and more.",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
@@ -15,89 +41,55 @@
             <a href="https://denelix.github.io/" target="_blank">
                 <img id="topImage" src="https://avatars.githubusercontent.com/u/69168805?v=4" alt="Profile" class="top-image">
             </a>
+            <h1 class="page-title">Dandy's World Calculator <span>v2.1 Thanksgiving Update</span></h1>
 
-            <div class="preset-boxes">
-                <div class="preset" onclick="selectToon(2,3,3,3,'Astro')"><img src="assets/Toons/Astro_Render.webp" alt="Astro"></div>
-                <div class="preset" onclick="selectToon(1,2,5,4,'Bassie')"><img src="assets/Toons/Bassie_Render.webp" alt="Bassie"></div>
-                <div class="preset" onclick="selectToon(1,2,4,5,'Blot')"><img src="assets/Toons/Blot_Render.webp" alt="Blot"></div>
-                <div class="preset" onclick="selectToon(4,2,3,5,'Bobette')"><img src="assets/Toons/Bobette_Render.webp" alt="Bobette"></div>
-                <div class="preset" onclick="selectToon(3,3,3,3,'Boxten')"><img src="assets/Toons/Boxten_Render.webp" alt="Boxten"></div>
-                <div class="preset" onclick="selectToon(3,4,3,4Brightney')"><img src="assets/Toons/Brightney_Render.webp" alt="Brightney"></div>
-                <div class="preset" onclick="selectToon(2,2,4,4,'Coal')"><img src="assets/Toons/Coal_Render.webp" alt="Coal"></div>
-                <div class="preset" onclick="selectToon(3,2,4,2,'Cocoa')"><img src="assets/Toons/Cocoa_Render.webp" alt="Cocoa"></div>
-                <div class="preset" onclick="selectToon(2,4,1,3,'Connie')"><img src="assets/Toons/Connie_Render.webp" alt="Connie"></div>
-                <div class="preset" onclick="selectToon(1,3,3,4,'Cosmo')"><img src="assets/Toons/Cosmo_Render.webp" alt="Cosmo"></div>
-                <div class="preset" onclick="selectToon(5,5,5,3,'Dandy')"><img src="assets/Toons/Dandy_Render.webp" alt="Dandy"></div>
-                <div class="preset" onclick="selectToon(3,3,4,3,'Eclipse')"><img src="assets/Toons/Eclipse_Render.webp" alt="Eclipse"></div>
-                <div class="preset" onclick="selectToon(3,3,3,3,'Eggson')"><img src="assets/Toons/Eggson_Render.webp" alt="Eggson"></div>
-                <div class="preset" onclick="selectToon(4,3,3,2,'Finn')"><img src="assets/Toons/Finn_Render.webp" alt="Finn"></div>
-                <div class="preset" onclick="selectToon(2,2,4,4,'Flutter')"><img src="assets/Toons/Flutter_Render.webp" alt="Flutter"></div>
-                <div class="preset" onclick="selectToon(2,3,4,2,'Flyte')"><img src="assets/Toons/Flyte_Render.webp" alt="Flyte"></div>
-                <div class="preset" onclick="selectToon(5,3,3,3,'Gigi')"><img src="assets/Toons/Gigi_Render.webp" alt="Gigi"></div>
-                <div class="preset" onclick="selectToon(3,3,2,3,'Ginger')"><img src="assets/Toons/Ginger_Render.webp" alt="Ginger"></div>
-                <div class="preset" onclick="selectToon(2,5,3,3,'Glisten')"><img src="assets/Toons/Glisten_Render.webp" alt="Glisten"></div>
-                <div class="preset" onclick="selectToon(3,2,4,4,'Goob')"><img src="assets/Toons/Goob_Render.webp" alt="Goob"></div>
-                <div class="preset" onclick="selectToon(5,5,4,1,'Gourdy')"><img src="assets/Toons/Gourdy_Render.webp" alt="Gourdy"></div>
-                <div class="preset" onclick="selectToon(4,3,3,3,'Looey')"><img src="assets/Toons/Looey_Render.webp" alt="Looey"></div>
-                <div class="preset" onclick="selectToon(3,1,5,4,'Pebble')"><img src="assets/Toons/Pebble_Render.webp" alt="Pebble"></div>
-                <div class="preset" onclick="selectToon(3,3,3,3,'Poppy')"><img src="assets/Toons/Poppy_Render.webp" alt="Poppy"></div>
-                <div class="preset" onclick="selectToon(3,5,5,3,'Razzle &amp; Dazzle')"><img src="assets/Toons/Razzle_%26_Dazzle_Render.webp" alt="Razzle &amp; Dazzle"></div>
-                <div class="preset" onclick="selectToon(3,3,3,3,'Ribecca')"><img src="assets/Toons/Ribecca_Render.webp" alt="Ribbeca"></div>
-                <div class="preset" onclick="selectToon(3,4,2,3,'Rodger')"><img src="assets/Toons/Rodger_Render.webp" alt="Rodger"></div>
-                <div class="preset" onclick="selectToon(3,3,3,3,'Rudie')"><img src="assets/Toons/Rudie_Render.webp" alt="Rudie"></div>
-                <div class="preset" onclick="selectToon(2,3,2,5,'Scraps')"><img src="assets/Toons/Scraps_Render.webp" alt="Scraps"></div>
-                <div class="preset" onclick="selectToon(5,3,3,2,'Shelly')"><img src="assets/Toons/Shelly_Render.webp" alt="Shelly"></div>
-                <div class="preset" onclick="selectToon(1,1,1,1,'Shrimpo')"><img src="assets/Toons/Shrimpo_Render.webp" alt="Shrimpo"></div>
-                <div class="preset" onclick="selectToon(5,5,1,1,'Soulvester')"><img src="assets/Toons/Soulvester_Render.webp" alt="Soulvester"></div>
-                <div class="preset" onclick="selectToon(2,2,4,5,'Sprout')"><img src="assets/Toons/Sprout_Render.webp" alt="Sprout"></div>
-                <div class="preset" onclick="selectToon(3,3,3,2,'Squirm')"><img src="assets/Toons/Squirm_Render.webp" alt="Squirm"></div>
-                <div class="preset" onclick="selectToon(3,3,3,4,'Teagan')"><img src="assets/Toons/Teagan_Render.webp" alt="Teagan"></div>
-                <div class="preset" onclick="selectToon(4,2,4,2,'Tisha')"><img src="assets/Toons/Tisha_Render.webp" alt="Tisha"></div>
-                <div class="preset" onclick="selectToon(3,2,3,3,'Toodles')"><img src="assets/Toons/Toodles_Render.webp" alt="Toodles"></div>
-                <div class="preset" onclick="selectToon(4,5,2,3,'Vee')"><img src="assets/Toons/Vee_Render.webp" alt="Vee"></div>
-                <div class="preset" onclick="selectToon(3,5,4,1,'Yatta')"><img src="assets/Toons/Yatta_Render.webp" alt="Yatta"></div>
-            </div>
+            <div class="preset-boxes" id="toonGrid"></div>
+            <div id="toonOptions"></div>
 
             <!-- STATS -->
             <h2>Stats</h2>
+            <div class="stat-row hidden" id="healthRow">
+                <label>Health (Looey):</label>
+                <input type="number" id="health" value="3" min="1" max="3">
+            </div>
             <div>
                 <label>Skill Check:</label>
                 <div class="stars" id="skillStars">
-                    <img src="assets/star-off.png" class="star" onclick="setSkill(1)">
-                    <img src="assets/star-off.png" class="star" onclick="setSkill(2)">
-                    <img src="assets/star-off.png" class="star" onclick="setSkill(3)">
-                    <img src="assets/star-off.png" class="star" onclick="setSkill(4)">
-                    <img src="assets/star-off.png" class="star" onclick="setSkill(5)">
+                    <img src="assets/star-off.png" class="star" alt="Skill Check 1" onclick="setSkill(1)">
+                    <img src="assets/star-off.png" class="star" alt="Skill Check 2" onclick="setSkill(2)">
+                    <img src="assets/star-off.png" class="star" alt="Skill Check 3" onclick="setSkill(3)">
+                    <img src="assets/star-off.png" class="star" alt="Skill Check 4" onclick="setSkill(4)">
+                    <img src="assets/star-off.png" class="star" alt="Skill Check 5" onclick="setSkill(5)">
                 </div>
             </div>
             <div>
                 <label>Extraction Speed:</label>
                 <div class="stars" id="extractionStars">
-                    <img src="assets/star-off.png" class="star" onclick="setExtraction(1)">
-                    <img src="assets/star-off.png" class="star" onclick="setExtraction(2)">
-                    <img src="assets/star-off.png" class="star" onclick="setExtraction(3)">
-                    <img src="assets/star-off.png" class="star" onclick="setExtraction(4)">
-                    <img src="assets/star-off.png" class="star" onclick="setExtraction(5)">
+                    <img src="assets/star-off.png" class="star" alt="Extraction 1" onclick="setExtraction(1)">
+                    <img src="assets/star-off.png" class="star" alt="Extraction 2" onclick="setExtraction(2)">
+                    <img src="assets/star-off.png" class="star" alt="Extraction 3" onclick="setExtraction(3)">
+                    <img src="assets/star-off.png" class="star" alt="Extraction 4" onclick="setExtraction(4)">
+                    <img src="assets/star-off.png" class="star" alt="Extraction 5" onclick="setExtraction(5)">
                 </div>
             </div>
             <div>
                 <label>Movement Speed:</label>
                 <div class="stars" id="movementSpeedStars">
-                    <img src="assets/star-off.png" class="star" onclick="setMovementSpeed(1)">
-                    <img src="assets/star-off.png" class="star" onclick="setMovementSpeed(2)">
-                    <img src="assets/star-off.png" class="star" onclick="setMovementSpeed(3)">
-                    <img src="assets/star-off.png" class="star" onclick="setMovementSpeed(4)">
-                    <img src="assets/star-off.png" class="star" onclick="setMovementSpeed(5)">
+                    <img src="assets/star-off.png" class="star" alt="Movement 1" onclick="setMovementSpeed(1)">
+                    <img src="assets/star-off.png" class="star" alt="Movement 2" onclick="setMovementSpeed(2)">
+                    <img src="assets/star-off.png" class="star" alt="Movement 3" onclick="setMovementSpeed(3)">
+                    <img src="assets/star-off.png" class="star" alt="Movement 4" onclick="setMovementSpeed(4)">
+                    <img src="assets/star-off.png" class="star" alt="Movement 5" onclick="setMovementSpeed(5)">
                 </div>
             </div>
             <div>
                 <label>Stamina:</label>
                 <div class="stars" id="staminaStars">
-                    <img src="assets/star-off.png" class="star" onclick="setStamina(1)">
-                    <img src="assets/star-off.png" class="star" onclick="setStamina(2)">
-                    <img src="assets/star-off.png" class="star" onclick="setStamina(3)">
-                    <img src="assets/star-off.png" class="star" onclick="setStamina(4)">
-                    <img src="assets/star-off.png" class="star" onclick="setStamina(5)">
+                    <img src="assets/star-off.png" class="star" alt="Stamina 1" onclick="setStamina(1)">
+                    <img src="assets/star-off.png" class="star" alt="Stamina 2" onclick="setStamina(2)">
+                    <img src="assets/star-off.png" class="star" alt="Stamina 3" onclick="setStamina(3)">
+                    <img src="assets/star-off.png" class="star" alt="Stamina 4" onclick="setStamina(4)">
+                    <img src="assets/star-off.png" class="star" alt="Stamina 5" onclick="setStamina(5)">
                 </div>
             </div>
 
@@ -106,21 +98,25 @@
             <div class="collapsible-section" id="machineSection">
                 <div class="buff-row">
                     <label><input type="checkbox" id="evenDistCheck" onchange="toggleDistMode()"> Even Distribution
-                    <span class="tt">?<span class="tt-text">Distributes machines evenly across all 3 types. 9 total = 3 of each.</span></span></label>
+                    <span class="tt">?<span class="tt-text">Splits the total machine count across Stripe, Circle, Barnaby, and Treadmill as evenly as possible.</span></span></label>
                 </div>
                 <div id="evenDistSection" style="display:none">
                     <label>Total Machines:</label>
-                    <input type="number" id="totalMachinesInput" value="3" min="1" onchange="updateMachineDistribution()">
+                    <input type="number" id="totalMachinesInput" value="4" min="1" onchange="updateMachineDistribution()">
                 </div>
                 <div id="customDistSection">
                     <div class="machine-dist">
                         <div class="machine-dist-item">
-                            <label>Stripe (5s CD)</label>
+                            <label>Stripe (3s)</label>
                             <input type="number" id="stripeMachineCount" value="1" min="0" onchange="updateMachineDistribution()">
                         </div>
                         <div class="machine-dist-item">
-                            <label>Circle (3s CD)</label>
+                            <label>Circle (3s)</label>
                             <input type="number" id="circleMachineCount" value="1" min="0" onchange="updateMachineDistribution()">
+                        </div>
+                        <div class="machine-dist-item">
+                            <label>Barnaby</label>
+                            <input type="number" id="barnabyMachineCount" value="0" min="0" onchange="updateMachineDistribution()">
                         </div>
                         <div class="machine-dist-item">
                             <label>Treadmill</label>
@@ -129,42 +125,47 @@
                     </div>
                 </div>
                 <div style="margin:6px 0;font-size:0.85em;">Total: <strong id="totalMachinesDisplay">3</strong></div>
+                <div class="buff-row">
+                    <label><input type="checkbox" id="firstCoinCheck"> Barnaby first coin only
+                    <span class="tt">?<span class="tt-text">Barnaby only. Restarts the minigame after the first tick until the first coin appears. The first tick is on and cannot have a coin. Each attempt costs 1 tick. At 50% skill check chance or higher the coin is always there.</span></span></label>
+                </div>
 
                 <div>
                     <label>Extraction Cards (-5 completion each):</label>
                     <div class="stars" id="extractionCardsEl">
-                        <img src="assets/extract-off.png" class="card" onclick="setExtractionCard(1)">
-                        <!-- <img src="assets/extract-off.png" class="card" onclick="setExtractionCard(2)"> -->
+                        <img src="assets/extract-off.png" class="card" alt="Extraction Card 1" onclick="setExtractionCard(1)">
                     </div>
                 </div>
                 <div>
                     <label>Stamina Cards (+10 max stamina each):</label>
                     <div class="stars" id="staminaCardsEl">
-                        <img src="assets/extract-off.png" class="card" onclick="setStaminaCard(1)">
-                        <img src="assets/extract-off.png" class="card" onclick="setStaminaCard(2)">
+                        <img src="assets/extract-off.png" class="card" alt="Stamina Card 1" onclick="setStaminaCard(1)">
+                        <img src="assets/extract-off.png" class="card" alt="Stamina Card 2" onclick="setStaminaCard(2)">
                     </div>
                 </div>
 
                 <div class="buff-row">
                     <label><input type="checkbox" id="enableTravel"> Enable Travel Between Machines
-                    <span class="tt">?<span class="tt-text">Adds travel time between machines. 1 unit = 15 game distance. 3-star MS walks 15/s. Run to extraction machines, walk to treadmills.</span></span></label>
+                    <span class="tt">?<span class="tt-text">Adds travel time between machines. 1 unit = 15 game distance. 3 star movement speed walks at 15 per second. Run to extraction machines, walk to treadmills.</span></span></label>
                 </div>
                 <div>
                     <label>Avg Distance Between Machines (units):
-                    <span class="tt">?<span class="tt-text">1 unit = 15 game distance. Default 8. A 3-star toon walks 15 dist/sec.</span></span></label>
+                    <span class="tt">?<span class="tt-text">1 unit = 15 game distance. Default 8. A 3 star toon walks at 15 distance per second.</span></span></label>
                     <input type="number" id="distanceInput" value="8" min="1">
                 </div>
 
                 <div>
+					<!-- Denelix. Why do you hate emDashes? Ur scared imma fkm GPT this shit? I know ur reading this ur goma delete this agaim -->
+					<!-- Mister, Keyboards are like 2 dollars no? -->
                     <label>Skill Check Accuracy (%) - Stripe base:
-                    <span class="tt">?<span class="tt-text">Your personal hit accuracy on stripe machines. Circle base is always 70%. Each skill star from 3 adds/removes 15%.</span></span></label>
+                    <span class="tt">?<span class="tt-text">Your personal hit accuracy on stripe machines. Circle base is always 70%. Each skill star from 3 adds or removes 15%. Illness, Magnifying Glass, Participation Award, Paint Bucket, and Stopwatch modify this.</span></span></label>
                     <input type="number" id="accuracyInput" value="80" min="0" max="100">
                 </div>
                 <div class="buff-row" style="margin-top:4px;">
                     <label><input type="checkbox" id="goatedAccuracy"> Goated Accuracy (hit every skillcheck)</label>
                 </div>
                 <div>
-                    <label>Item Refill Every N Machines (0=never):</label>
+                    <label>Item Refill Every N Machines (0 = never):</label>
                     <input type="number" id="itemRefill" value="3" min="0">
                 </div>
             </div>
@@ -175,47 +176,103 @@
                 <div class="buff-group">
                     <div class="buff-group-title">Ally Buffs</div>
                     <div class="buff-row"><label><input type="checkbox" id="Shelly"> Shelly Cheering (+75% extraction)
-                    <span class="tt">?<span class="tt-text">Shelly cheers giving +75% extraction when her timer is above 50. Cycles every 65s.</span></span></label></div>
-                    <div class="buff-row"><label><input type="checkbox" id="BrushaBoost"> Brusha Boost (+50% SC chance)
-                    <span class="tt">?<span class="tt-text">Brusha gives +50% skillcheck chance to everyone nearby.</span></span></label></div>
+                    <span class="tt">?<span class="tt-text">Shelly cheers you on every 75 seconds and grants a 15 second extraction speed buff of 75%.</span></span></label></div>
+                    <div class="buff-row"><label><input type="checkbox" id="BrushaBoost"> Brusha Boost (+25% extraction, +15% SC chance)
+                    <span class="tt">?<span class="tt-text">Every machine you do always has 25% faster extraction speed and a 15% higher skill check chance.</span></span></label></div>
                     <div class="buff-row"><label><input type="checkbox" id="BobetteBuff"> Bobette Aura (+50% stam regen, +25% MS)
-                    <span class="tt">?<span class="tt-text">Bobette's festive aura: +50% stamina regen and +25% speed. Permanent if you stay nearby.</span></span></label></div>
-                </div>
-                <div class="buff-group">
-                    <div class="buff-group-title">Toon-Specific Buffs</div>
+                    <span class="tt">?<span class="tt-text">Bobette's festive aura gives 50% faster stamina regeneration and a 25% movement speed boost.</span></span></label></div>
                     <div class="buff-row"><label><input type="checkbox" id="GourdyRandom"> Gourdy Random Boost (15s / 35s CD)
-                    <span class="tt">?<span class="tt-text">Gourdy gives a random stat boost for 15s, 35s cooldown. Lock it below or leave random.</span></span></label></div>
-                    <div class="buff-row"><label><input type="checkbox" id="GourdyPanic"> Gourdy Panic MS (+30% first travel)
-                    <span class="tt">?<span class="tt-text">+30% movement speed on first elevator travel. Only with Travel enabled.</span></span></label></div>
-                    <div class="buff-row"><label><input type="checkbox" id="EclipseBlackout"> Eclipse Blackout (+20% MS, +60% stam yes it is.)
-                    <span class="tt">?<span class="tt-text">Eclipse gets +20% MS for the whole floor and +50 max stamina during blackouts. Eclipse only.</span></span></label></div>
-                    <div class="buff-row"><label><input type="checkbox" id="ShellyMSBuff"> Shelly MS Buff (after machine)
-                    <span class="tt">?<span class="tt-text">If YOU are Shelly, get +25% MS after completing each machine for travel.</span></span></label></div>
-                    <div class="buff-row"><label><input type="checkbox" id="TeammateShelly"> Teammate Shelly (+25% MS stack)
-                    <span class="tt">?<span class="tt-text">A second Shelly on your team adds another +25% MS after machine completion. Max 1 teammate.</span></span></label></div>
-                    <div class="buff-row"><label><input type="checkbox" id="squirmBooks"> Eat Books While Traveling (Squirm)
-                    <span class="tt">?<span class="tt-text">Squirm eats books during travel (50% slower), gains +100% extraction for 10s every 2 machines. Requires Travel.</span></span></label></div>
+                    <span class="tt">?<span class="tt-text">A Gourdy on your team uses Trick or Treat every 35 seconds, granting a random 20% boost for 15 seconds. Stealth rolls do nothing.</span></span></label></div>
+                    <div class="buff-row"><label><input type="checkbox" id="GourdySugarRush"> Gourdy Sugar Rush (+20% MS for 5s, panic too)
+                    <span class="tt">?<span class="tt-text">Gourdy gives everyone a 20% movement speed boost for 5 seconds when the floor starts and when Panic Mode begins.</span></span></label></div>
                 </div>
+
                 <div class="buff-group">
                     <div class="buff-group-title">Debuffs</div>
-                    <div>
-                        <label>Confused Level:</label>
-                        <div class="confused-btns">
-                            <button class="confused-btn" onclick="setConfused(0)">None</button>
-                            <button class="confused-btn" onclick="setConfused(1)">1</button>
-                            <button class="confused-btn" onclick="setConfused(2)">2</button>
-                            <button class="confused-btn" onclick="setConfused(3)">3</button>
-                        </div>
+                    <div class="debuff-grid">
+                        <label>Illness
+                            <select id="debuffIllness" onchange="updateDebuffControls()">
+                                <option value="0">None</option>
+                                <option value="1">I (-15% skill check)</option>
+                                <option value="2">II (-25% skill check)</option>
+                                <option value="3">III (-50% skill check)</option>
+                            </select>
+                        </label>
+                        <label>Slow
+                            <select id="debuffSlow" onchange="updateDebuffControls()">
+                                <option value="0">None</option>
+                                <option value="1">I (-15% MS)</option>
+                                <option value="2">II (-25% MS)</option>
+                                <option value="3">III (-50% MS)</option>
+                            </select>
+                        </label>
+                        <label>Tired
+                            <select id="debuffTired" onchange="updateDebuffControls()">
+                                <option value="0">None</option>
+                                <option value="1">I (-25% regen)</option>
+                                <option value="2">II (-50% regen)</option>
+                                <option value="3">III (-75% regen)</option>
+                            </select>
+                        </label>
+                        <label>Confused
+                            <select id="debuffConfused" onchange="updateDebuffControls()">
+                                <option value="0">None</option>
+                                <option value="1">I (-25% extraction)</option>
+                                <option value="2">II (-50% extraction)</option>
+                                <option value="3">III (-75% extraction)</option>
+                            </select>
+                        </label>
                     </div>
-                    <div class="buff-row"><label><input type="checkbox" id="twistedFinn"> Twisted Finn (50% slow after machine)
-                    <span class="tt">?<span class="tt-text">Twisted Finn applies 50% movement slow after completing any machine. Affects travel. Immune toons ignore this.</span></span></label></div>
+                    <div class="buff-row"><label><input type="checkbox" id="ichorLeak"> Ichor Leak
+                    <span class="tt">?<span class="tt-text">Each machine has a 10% chance to be affected. Illness III (-50% skill check size) and Slow I (-15% MS). Flutter, Blot, Connie, Soulvester, Ribecca, and Tisha ignore it.</span></span></label></div>
+                    <div class="buff-row"><label><input type="checkbox" id="twistedBrusha"> Twisted Brusha
+                    <span class="tt">?<span class="tt-text">25% of non-treadmill machines are vandalized, reducing skill check chance by 15%. Treadmills are never affected.</span></span></label></div>
+                    <div class="buff-row"><label><input type="checkbox" id="twistedShelly"> Twisted Shelly
+                    <span class="tt">?<span class="tt-text">Confused I while she is on the floor. Ribecca is immune and does not gain a buff from this.</span></span></label></div>
+                    <div class="buff-row"><label><input type="checkbox" id="springFever"> Spring Fever
+                    <span class="tt">?<span class="tt-text">Tired II on Toons and Energized II for both Toons and Twisteds. Energized II is +50% movement speed.</span></span></label></div>
+                    <div class="debuff-grid">
+                        <label>Twisted Bassie
+                            <select id="twistedBassie" onchange="updateDebuffControls()">
+                                <option value="none">None</option>
+                                <option value="vines">Vines (Slow II)</option>
+                                <option value="flowers">Flowers (Slow III, Tired II)</option>
+                            </select>
+                        </label>
+                        <label>Trick or Treat
+                            <select id="trickOrTreat" onchange="updateDebuffControls()">
+                                <option value="none">None</option>
+                                <option value="barnabyDoor">BarnabyDoor (-30% MS, 15s)</option>
+                                <option value="biteSized">Bite-sized (slippery)</option>
+                                <option value="sugarRush">Sugar Rush (+30% MS and regen, 30s)</option>
+                                <option value="slow1">Slow I</option>
+                                <option value="tired1">Tired I</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="debuff-note">Dazed is Twisted only and does not change your stats. Bite-sized has no flat speed value in the calculator. Slow affects Walk, Run, and Tap Run, so it also changes Twisted Chase Speeds and travel speed. Tired lowers stamina regen, which lowers Tap Run and can change Twisted Chase Speeds.</div>
                 </div>
                 <div class="buff-group">
                     <div class="buff-group-title">General</div>
-                    <div><label>Health (Looey):</label><input type="number" id="health" value="3" min="1" max="3"></div>
                     <div><label>Players:</label><input type="number" id="players" value="1" min="1" max="8"></div>
                     <div class="buff-row"><label><input type="checkbox" id="dyleCheck"> Dyle Check (+50 max stamina)</label></div>
-                    <div class="buff-row"><label><input type="checkbox" id="consistent"> Consistent Coin (always activates extraction/skillcheck)</label></div>
+                    <div>
+                        <label>Cooldown Cards (each -5s):
+                        <span class="tt">?<span class="tt-text">Rehearsal and Practice each reduce active ability cooldowns by 5 seconds.</span></span></label>
+                        <div class="stars" id="cooldownCardsEl">
+                            <img src="assets/extract-off.png" class="card" alt="Rehearsal" onclick="setCooldownCard(1)">
+                            <img src="assets/extract-off.png" class="card" alt="Practice" onclick="setCooldownCard(2)">
+                        </div>
+                    </div>
+                    <div class="buff-row"><label><input type="checkbox" id="consistent"> Consistent Coin (Lucky Coin always activates)
+                    <span class="tt">?<span class="tt-text">Only Lucky Coin is affected. It always activates, and Coin Lock chooses which stat it boosts.</span></span></label></div>
+                    <div>
+                        <label>Suppression Card (Panic Mode +15% instead of +20%... no seriously like that's how it is. its 20%-5%. that was the 5% they were talking about. just me?)
+                        <span class="tt">?<span class="tt-text">Uses the Panic Mode with Suppression values. Twisted panic chase speed becomes base chase speed +15% instead of +20%.</span></span></label>
+                        <div class="stars" id="suppressionCardEl">
+                            <img src="assets/extract-off.png" class="card" alt="Suppression Card" onclick="setSuppressionCard()">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -250,35 +307,7 @@
             <!-- TRINKETS -->
             <button class="section-toggle" onclick="toggleSection('trinketSection')">Trinkets</button>
             <div class="collapsible-section" id="trinketSection">
-                <div class="trinket-boxes">
-                    <div class="trinket" onclick="selectTrinket('Lucky Coin',this)"><img src="assets/items/Lucky_Coin.webp" alt="Lucky Coin"></div>
-                    <div class="trinket" onclick="selectTrinket('Participation Award',this)"><img src="assets/items/Participation_Award.webp" alt="Participation Award"></div>
-                    <div class="trinket" onclick="selectTrinket('Veemote',this)"><img src="assets/items/Veemote.webp" alt="Veemote"></div>
-                    <div class="trinket" onclick="selectTrinket('Machine Manual',this)"><img src="assets/items/Machine_Manual.webp" alt="Machine Manual"></div>
-                    <div class="trinket" onclick="selectTrinket('Wrench',this)"><img src="assets/items/Wrench.webp" alt="Wrench"></div>
-                    <div class="trinket" onclick="selectTrinket('Blue Bandana',this)"><img src="assets/items/Blue_Bandana.webp" alt="Blue Bandana"></div>
-                    <div class="trinket" onclick="selectTrinket('Magnifing Glass',this)"><img src="assets/items/Magnifying_Glass.webp" alt="Magnifing Glass"></div>
-                    <div class="trinket" onclick="selectTrinket('Alarm',this)"><img src="assets/items/Alarm.webp" alt="Alarm"></div>
-                    <div class="trinket" onclick="selectTrinket('Bone',this)"><img src="assets/items/Bone.webp" alt="Bone"></div>
-                    <div class="trinket" onclick="selectTrinket('Brick',this)"><img src="assets/items/Brick.webp" alt="Brick"></div>
-                    <div class="trinket" onclick="selectTrinket('Dog Plush',this)"><img src="assets/items/Dog_Plush.webp" alt="Dog Plush"></div>
-                    <div class="trinket" onclick="selectTrinket('Pink Bow',this)"><img src="assets/items/Pink_Bow.webp" alt="Pink Bow"></div>
-                    <div class="trinket" onclick="selectTrinket('Pull Toy',this)"><img src="assets/items/Pull_Toy.webp" alt="Pull Toy"></div>
-                    <div class="trinket" onclick="selectTrinket('Ribbon Spool',this)"><img src="assets/items/Ribbon_Spool.webp" alt="Ribbon Spool"></div>
-                    <div class="trinket" onclick="selectTrinket('Speedy Shoes',this)"><img src="assets/items/Speedy_Shoes.webp" alt="Speedy Shoes"></div>
-                    <div class="trinket" onclick="selectTrinket('Vanity Mirror',this)"><img src="assets/items/Vanity_Mirror.webp" alt="Vanity Mirror"></div>
-                    <div class="trinket" onclick="selectTrinket('Clown Horn',this)"><img src="assets/items/Clown_Horn.webp" alt="Clown Horn"></div>
-                    <div class="trinket" onclick="selectTrinket('Coal',this)"><img src="assets/items/Coal_Trinket.webp" alt="Coal"></div>
-                    <div class="trinket" onclick="selectTrinket('Train Whistle',this)"><img src="assets/items/Train_Whistle.webp" alt="Train Whistle"></div>
-                    <div class="trinket" onclick="selectTrinket('Star Pillow',this)"><img src="assets/items/Star_Pillow.webp" alt="Star Pillow"></div>
-                    <div class="trinket" onclick="selectTrinket('Speedometer',this)"><img src="assets/items/Speedometer.webp" alt="Speedometer"></div>
-                    <div class="trinket" onclick="selectTrinket('Friendship Bracelet',this)"><img src="assets/items/Friendship_Bracelet.webp" alt="Friendship Bracelet"></div>
-                    <div class="trinket" onclick="selectTrinket('Cooler',this)"><img src="assets/items/Cooler.webp" alt="Cooler"></div>
-                    <div class="trinket" onclick="selectTrinket('Glazed Fondant Bag',this)"><img src="assets/items/Glazed_Fondant_Bag.webp" alt="Glazed Fondant Bag"></div>
-                    <div class="trinket" onclick="selectTrinket('Paint Bucket',this)"><img src="assets/items/Paint_Bucket.webp" alt="Paint Bucket"></div>
-                    <div class="trinket" onclick="selectTrinket('Feather Duster',this)"><img src="assets/items/Feather_Duster.webp" alt="Feather Duster"></div>
-                    <div class="trinket" onclick="selectTrinket('Stress Ball',this)"><img src="assets/items/Stress_Ball.webp" alt="Stress Ball"></div>
-                </div>
+                <div class="trinket-boxes" id="trinketGrid"></div>
             </div>
 
             <!-- CONSUMABLE ITEMS -->
@@ -292,13 +321,13 @@
         <!-- ========== RIGHT PANEL ========== -->
         <div class="output">
             <h3>Extraction Results</h3>
-            <div class="result-box">No trinkets: <strong id="noneResult">—</strong>s · <span id="noneSC">0</span> SC</div>
-            <div class="result-box"><span id="trinket1Name">None</span>: <strong id="trinket1Result">—</strong>s · <span id="trinket1SC">0</span> SC</div>
-            <div class="result-box"><span id="trinket2Name">None</span>: <strong id="trinket2Result">—</strong>s · <span id="trinket2SC">0</span> SC</div>
-            <div class="result-box">Both: <strong id="bothResult">—</strong>s · <span id="bothSC">0</span> SC</div>
+            <div class="result-box">No trinkets: <strong id="noneResult">-</strong>s · <span id="noneSC">0</span> SC</div>
+            <div class="result-box"><span id="trinket1Name">None</span>: <strong id="trinket1Result">-</strong>s · <span id="trinket1SC">0</span> SC</div>
+            <div class="result-box"><span id="trinket2Name">None</span>: <strong id="trinket2Result">-</strong>s · <span id="trinket2SC">0</span> SC</div>
+            <div class="result-box">Both: <strong id="bothResult">-</strong>s · <span id="bothSC">0</span> SC</div>
 
             <div class="travel-info" id="travelInfo" style="display:none">
-                <h3 style="margin-top:0;color:#e94560;">Travel Breakdown (ATM only works with 2 trinkets.)</h3>
+                <h3 style="margin-top:0;color:#e94560;">Unbothered Completion time</h3>
                 <div>Avg Travel Time: <span class="stat-badge" id="travelTimeDisplay">0</span>s</div>
                 <div>Extraction Only: <span class="stat-badge" id="extractOnlyDisplay">0</span>s</div>
                 <div class="travel-warning" id="travelWarnings"></div>
@@ -306,20 +335,56 @@
 
             <h3>Movement &amp; Stamina</h3>
             <div class="result-box">
-                Walk: <span class="stat-badge" id="walkSpeed">—</span>
-                Run: <span class="stat-badge" id="runSpeed">—</span>
-                Stamina: <span class="stat-badge" id="staminaDisplay">—</span>
-                Regen: <span class="stat-badge" id="regenDisplay">—</span>/s
+                Walk: <span class="stat-badge" id="walkSpeed">-</span>
+                Run: <span class="stat-badge" id="runSpeed">-</span>
+                Tap Run: <span class="stat-badge" id="tapSpeed">-</span>
+                Stamina: <span class="stat-badge" id="staminaDisplay">-</span>
+                Regen: <span class="stat-badge" id="regenDisplay">-</span>/s
             </div>
 
-            <h3>Twisted Comparison</h3>
+            <div class="twisted-controls">
+                <h3>Twisted Chase Speeds</h3>
+                <select id="twistedFilter" onchange="refreshPreview()" title="Filter twisted list">
+                    <option value="all">Filter: All</option>
+                    <option value="Common">Filter: Common</option>
+                    <option value="Uncommon">Filter: Uncommon</option>
+                    <option value="Rare">Filter: Rare</option>
+                    <option value="Main">Filter: Main</option>
+                    <option value="Lethal">Filter: Lethal</option>
+                    <option value="demons">Filter: Disgusting Demons</option>
+                </select>
+                <select id="twistedSort" onchange="refreshPreview()" title="Sort twisted list">
+                    <option value="speed">Sort: Speed (fast to slow)</option>
+                    <option value="rarity">Sort: Rarity</option>
+                    <option value="attention">Sort: Attention (short to long)</option>
+                    <option value="annoying">Sort: Annoying</option>
+                </select>
+            </div>
             <div class="twisted-container" id="twistedContainer"></div>
-            <div class="legend">🔵 Out-Walk in Panic · 🟢 Out-Walk · 🟠 Out-Run Only · 🔴 HIDE!</div>
+            <div class="legend">
+                <span class="legend-item"><span class="legend-dot purple"></span>Purple: outwalk in Panic Mode</span>
+                <span class="legend-item"><span class="legend-dot blue"></span>Blue: outwalk</span>
+                <span class="legend-item"><span class="legend-dot orange"></span>Orange: perfect tap running</span>
+                <span class="legend-item"><span class="legend-dot pink"></span>Pink: outrun only</span>
+                <span class="legend-item"><span class="legend-dot red"></span>Red: can't even run</span>
+            </div>
+            <div class="debuff-note">Split boxes show the normal chase color on the left and the Panic Mode color on the right. Whole purple means you outwalk them in both normal and Panic Mode.</div>
+            <div class="debuff-note" id="suppressionNote" style="display:none">Suppression Card is active. Twisted Panic Mode speed is +15% instead of +20%.</div>
 
             <h3>Patch Notes</h3>
             <div class="result-box">
-                <strong>2.0.2</strong> <em style="color:#666">— September 12th 2026</em><br>
-                +Small fixes.
+                <strong>2.1 Thanksgiving Update</strong> <em style="color:#666">— November 8th 2026</em><br>
+                x"THANKS GIVING UPDATE? WHAT?" bro idk man 😭 Im future proofing until like Christmas or something.<br>
+                +New toon: Waxwell<br>
+                +New trinket: Peppermint Icing. (it was underwhelming results)<br>
+                +New machine: Barnaby, with Barnaby first coin only strat.<br>
+                +Stripe and Circle machines now both use 3 second skill check timers, ever since they updated the machines strips are finally 3 seconds too.<br>
+                +All debuffs added, including Ichor Leak and Twisted Brusha<br>
+                +Turned orange to tap running speeds. GL minmax jungle distractors.<br>
+                +Suppression Card toggle for -5% Panic Mode speeds (20%-5%=15%)... yes that's how it works<br>
+                +Shelly, Brusha, Finn, Gourdy, Ribecca, Toodles, Soulvester, and Yatta toon related stats.<br>
+                +Magnifying glass. is Fully accurate. (was 1.75 with Tech Savvy. now its 100% accurate)... and typo fix...<br>
+                +Dynamic character laayout, kingdom hearts sounds has hit another website. 
             </div>
             <div class="result-box">
                 <strong>2.0.1</strong> <em style="color:#666">— March 22nd 2026</em><br>
@@ -369,19 +434,23 @@
     </div>
 
     <div class="bottom-buttons">
+        <button id="muteBtn" onclick="toggleMute()" title="Mute sounds">🔊</button>
         <button id="extract" onclick="runSimulations()">Calculate</button>
         <button id="helpBtn" onclick="help()">?</button>
     </div>
 
     <div class="help-modal" id="helpModal">
         <div class="help-content">
-            <h3>DW Calculator v2.0</h3>
-            <p><strong>1.</strong> Select a Toon or set stars manually.</p>
+            <h3>Dandy's World Calculator v2.1 (Thanksgiving Update)</h3>
+            <p><strong>1.</strong> Select a Toon or set stars manually. Toon options appear under the roster.</p>
             <p><strong>2.</strong> Open Machine Settings for machine types, travel, and accuracy.</p>
-            <p><strong>3.</strong> Open Buffs &amp; Debuffs hover the purple ? circles for details.</p>
+            <p><strong>3.</strong> Open Buffs &amp; Debuffs and hover the purple ? circles for details.</p>
             <p><strong>4.</strong> Equip up to 2 trinkets. Click a selected trinket to remove it.</p>
-            <p><strong>5.</strong> Open Consumable Items. click to add 1, or edit the count directly.</p>
+            <p><strong>5.</strong> Open Consumable Items. Click to add 1, or edit the count directly.</p>
             <p><strong>6.</strong> Hit Calculate! :3</p>
+            <div class="credibility">
+                <strong>Credibility:</strong> Mostly me, from recordings and... other stuff... I somehow know the data. As long as it's for science and isn't hurting anyone, does it really matter? And no, I did nothing against any TOS. Trust me. I have used information from the Wikipedia Stamina page for when I implemented treadmills.
+            </div>
             <button class="help-close" onclick="closeHelp()">Got it!</button>
         </div>
     </div>
