@@ -121,7 +121,7 @@ var TRINKETS = [
     { name: "Clown Horn", img: "Clown_Horn.webp", desc: "+10% Walk and Run Speed on odd floors." },
     { name: "Coal", img: "Coal_Trinket.webp", desc: "-10% Stealth and Movement Speed." },
     { name: "Train Whistle", img: "Train_Whistle.webp", desc: "Immune to the Slow debuff." },
-    { name: "Star Pillow", img: "Star_Pillow.webp", desc: "Doubles Stamina Regeneration while extracting." },
+    { name: "Star Pillow", img: "Star_Pillow.webp", desc: "Doubles Stamina Regeneration while extracting. Set Astro's reached Toon count to model its range increase." },
     { name: "Speedometer", img: "Speedometer.webp", desc: "+15 max Stamina." },
     { name: "Friendship Bracelet", img: "Friendship_Bracelet.webp", desc: "+5 max Stamina per alive Toon, max 40." },
     { name: "Cooler", img: "Cooler.webp", desc: "+50 max Stamina, -5% Movement Speed." },
@@ -232,7 +232,7 @@ var state = {
     accuracy: 0.8,
     goated: false,
     itemRefill: 3,
-    ally: { shelly: false, brusha: false, bobette: false, gourdyRandom: false, gourdySugarRush: false },
+    ally: { astro: false, shelly: false, brusha: false, bobette: false, gourdyRandom: false, gourdySugarRush: false },
     debuffs: {
         illness: 0, slow: 0, tired: 0, confused: 0,
         ichorLeak: false, twistedBrusha: false, twistedShelly: false,
@@ -500,7 +500,7 @@ function getSCChance(trinkets, buffs, machine, vandalized) {
     if (hasTrinket("Lucky Coin", trinkets) && currentLuckyStat === "Skill") chance += 0.12;
     if (state.ally.brusha) chance += 0.15;
     if (buffs) chance += getBuffAdd(buffs, "skillCheckChance");
-    if (vandalized && machine !== "treadmill") chance -= 0.15;
+    if (vandalized && machine !== "treadmill") chance -= 0.25;
     return clamp(chance, 0, 1);
 }
 
@@ -580,6 +580,16 @@ function getBuffAdd(buffs, type) {
 
 function addBuff(buffs, type, value, duration) {
     buffs.push({ type: type, value: value, remaining: duration, duration: duration });
+}
+
+function applyAstroAbility(sim, isAlly) {
+    if (isAlly) {
+        sim.stamina = sim.getMaxStamina();
+    } else {
+        var reached = clamp(state.toonOptions.astroToonsReached || 1, 1, 8);
+        sim.stamina = Math.min(sim.getMaxStamina(), sim.stamina + sim.getMaxStamina() * 0.2 * reached);
+    }
+    sim.addBuff("staminaRegenMult", 1.5, 10);
 }
 
 function tickBuffs(sim, dt) {
@@ -729,6 +739,7 @@ function FloorSim(itemCounts) {
     this.machineIndex = 0;
     this.machinesSinceRefill = 0;
     this.shellyCheerTimer = 75;
+    this.astroAbilityCooldown = 0;
     this.gourdyRandomTimer = 35;
     this.waxwellIgnited = 0;
     this.waxwellTired = false;
@@ -967,6 +978,7 @@ FloorSim.prototype.doTreadmill = function (machine) {
     var guard = 0;
 
     while (progress < goal && guard < 5000) {
+        if (guard === 0 && toonName() === "Eggson") progress += goal * 0.2;
         var walk = getWalkSpeed(this.trinkets, this.buffs, false);
         var run = getRunSpeed(this.trinkets, this.buffs, false);
         if (!this.exhausted && this.stamina > 0 && run > walk) {
@@ -1011,6 +1023,13 @@ FloorSim.prototype.doTreadmill = function (machine) {
 FloorSim.prototype.tickTime = function (dt) {
     tickBuffs(this, dt);
     this.tickAbility(dt);
+    if (state.ally.astro && toonName() !== "Astro") {
+        this.astroAbilityCooldown -= dt;
+        if (this.astroAbilityCooldown <= 0) {
+            this.astroAbilityCooldown = 55;
+            applyAstroAbility(this, true);
+        }
+    }
     if (state.ally.shelly) {
         this.shellyCheerTimer -= dt;
         if (this.shellyCheerTimer <= 0) {
@@ -1043,7 +1062,7 @@ FloorSim.prototype.tickAbility = function (dt) {
     if (this.abilityCooldown > 0) return;
     this.abilityCooldown = Math.max(0, def.cooldown - state.cooldownCards * 5);
     if (def.type === "staminaRestore") {
-        this.stamina = Math.min(this.getMaxStamina(), this.stamina + this.getMaxStamina() * 0.2);
+        applyAstroAbility(this, false);
     } else if (def.type === "extraction") {
         this.addBuff("extractionMult", def.value, def.duration);
     } else if (def.type === "random") {
@@ -1072,6 +1091,9 @@ FloorSim.prototype.afterMachine = function () {
     if (toonName() === "Finn" && state.toonOptions.finnPassive !== false) {
         var mult = 1.35 * (state.toonOptions.phantomFriend ? 2 : 1);
         this.addBuff("speedMult", mult, 10);
+    }
+    if (toonName() === "Brusha" && hasTrinket("Paint Bucket", this.trinkets)) {
+        this.addBuff("speedMult", 1.25, 5);
     }
     if (toonName() === "Shelly" && state.toonOptions.shellyMS !== false) {
         var mult2 = 1.25 * (state.toonOptions.teammateShelly ? 2 : 1);
@@ -1274,6 +1296,7 @@ function refreshPreview() {
     state.twistedFilter = getVal("twistedFilter", "all");
     state.twistedSort = getVal("twistedSort", "speed");
     state.coinLock = getVal("coinLock", "random");
+    state.ally.astro = getChecked("Astro");
     state.ally.shelly = getChecked("Shelly");
     state.ally.brusha = getChecked("BrushaBoost");
     state.ally.bobette = getChecked("BobetteBuff");
@@ -1595,6 +1618,10 @@ function renderToonOptions() {
     if (state.toon.name === "Looey") {
         html += '<div class="option-note">Heart of Helium: each missing heart gives 20% more Walk and Run Speed. Set Health in Stats.</div>';
     }
+    if (state.toon.name === "Astro") {
+        html += '<div class="option-row"><label for="astroToonsReached">Toons reached by Nap Time:</label><input type="number" id="astroToonsReached" min="1" max="8" value="' + (state.toonOptions.astroToonsReached || 1) + '" oninput="setToonOption(\'astroToonsReached\', parseInt(this.value)||1)"></div>';
+        html += '<div class="option-note">Nap Time fully restores reached Toons and restores Astro by 20% per reached Toon. Star Pillows increase range, so set the reached count accordingly.</div>';
+    }
     if (state.toon.name === "Shelly") {
         html += checkboxRow("shellyMS", "Shelly MS Buff (after machine)", state.toonOptions.shellyMS !== false, "Problem Solver: Shelly gains a 25% Movement Speed boost for 10 seconds when any Machine is completed.");
         html += checkboxRow("teammateShelly", "Phantom friend!", state.toonOptions.teammateShelly === true, "Pretends there are 2 Shellies completing machines at the same time, doubling your movement speed buff. This is the old Teammate Shelly option.");
@@ -1656,6 +1683,7 @@ function checkboxRow(id, label, checked, tooltip) {
 
 function setToonOption(key, value) {
     if (key === "yattaCandySlots") value = clamp(parseInt(value, 10) || 0, 0, 3);
+    if (key === "astroToonsReached") value = clamp(parseInt(value, 10) || 1, 1, 8);
     if (key === "boxtenPlayers") {
         value = clamp(parseInt(value, 10) || 1, 1, 8);
         state.players = value;
@@ -1713,7 +1741,8 @@ function selectToon(name) {
         soulvesterProtecting: false,
         yattaCandySlots: 0,
         waxwellAutoIgnite: true,
-        razzleParity: "odd"
+        razzleParity: "odd",
+        astroToonsReached: 1
     };
     if (toon.name === "Soulvester") state.speed = 1;
     if (toon.name === "Razzle & Dazzle") {
@@ -1920,6 +1949,7 @@ function syncStateFromUI() {
     state.itemRefill = getInt("itemRefill", 3);
     state.extractionCards = state.extractionCards;
     state.staminaCards = state.staminaCards;
+    state.ally.astro = getChecked("Astro");
     state.ally.shelly = getChecked("Shelly");
     state.ally.brusha = getChecked("BrushaBoost");
     state.ally.bobette = getChecked("BobetteBuff");
