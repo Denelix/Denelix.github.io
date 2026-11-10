@@ -232,6 +232,7 @@ var state = {
     accuracy: 0.8,
     goated: false,
     itemRefill: 3,
+    astroToonsReached: 1,
     ally: { astro: false, shelly: false, brusha: false, bobette: false, gourdyRandom: false, gourdySugarRush: false },
     debuffs: {
         illness: 0, slow: 0, tired: 0, confused: 0,
@@ -400,7 +401,6 @@ function getMaxStamina(trinkets, buffs) {
 
 function getRegen(trinkets, extracting, buffs) {
     var regen = REGEN_PER_SEC;
-    if (toonName() === "Astro") regen *= 1.5;
     if (state.ally.bobette) regen *= 1.5;
     if (extracting && hasTrinket("Star Pillow", trinkets)) regen *= 2;
     if (buffs) regen *= getBuffMult(buffs, "staminaRegenMult");
@@ -586,7 +586,7 @@ function applyAstroAbility(sim, isAlly) {
     if (isAlly) {
         sim.stamina = sim.getMaxStamina();
     } else {
-        var reached = clamp(state.toonOptions.astroToonsReached || 1, 1, 8);
+        var reached = clamp(state.astroToonsReached || 1, 1, 8);
         sim.stamina = Math.min(sim.getMaxStamina(), sim.stamina + sim.getMaxStamina() * 0.2 * reached);
     }
     sim.addBuff("staminaRegenMult", 1.5, 10);
@@ -1092,7 +1092,7 @@ FloorSim.prototype.afterMachine = function () {
         var mult = 1.35 * (state.toonOptions.phantomFriend ? 2 : 1);
         this.addBuff("speedMult", mult, 10);
     }
-    if (toonName() === "Brusha" && hasTrinket("Paint Bucket", this.trinkets)) {
+    if (toonName() === "Brusha" && state.toonOptions.brushaPaintBucketBoost !== false && hasTrinket("Paint Bucket", this.trinkets)) {
         this.addBuff("speedMult", 1.25, 5);
     }
     if (toonName() === "Shelly" && state.toonOptions.shellyMS !== false) {
@@ -1296,6 +1296,7 @@ function refreshPreview() {
     state.twistedFilter = getVal("twistedFilter", "all");
     state.twistedSort = getVal("twistedSort", "speed");
     state.coinLock = getVal("coinLock", "random");
+    state.astroToonsReached = clamp(getInt("astroToonsReached", 1), 1, 8);
     state.ally.astro = getChecked("Astro");
     state.ally.shelly = getChecked("Shelly");
     state.ally.brusha = getChecked("BrushaBoost");
@@ -1619,8 +1620,7 @@ function renderToonOptions() {
         html += '<div class="option-note">Heart of Helium: each missing heart gives 20% more Walk and Run Speed. Set Health in Stats.</div>';
     }
     if (state.toon.name === "Astro") {
-        html += '<div class="option-row"><label for="astroToonsReached">Toons reached by Nap Time:</label><input type="number" id="astroToonsReached" min="1" max="8" value="' + (state.toonOptions.astroToonsReached || 1) + '" oninput="setToonOption(\'astroToonsReached\', parseInt(this.value)||1)"></div>';
-        html += '<div class="option-note">Nap Time fully restores reached Toons and restores Astro by 20% per reached Toon. Star Pillows increase range, so set the reached count accordingly.</div>';
+        html += '<div class="option-note">Nap Time fully restores reached Toons and restores Astro by 20% per reached Toon. Set the reached count in Ally Buffs; Star Pillows increase its range.</div>';
     }
     if (state.toon.name === "Shelly") {
         html += checkboxRow("shellyMS", "Shelly MS Buff (after machine)", state.toonOptions.shellyMS !== false, "Problem Solver: Shelly gains a 25% Movement Speed boost for 10 seconds when any Machine is completed.");
@@ -1665,6 +1665,7 @@ function renderToonOptions() {
             '</select></div>';
     }
     if (state.toon.name === "Brusha") {
+        html += checkboxRow("brushaPaintBucketBoost", "Paint Bucket speed buff", state.toonOptions.brushaPaintBucketBoost !== false, "Assumes Brusha successfully buffs each completed machine while holding Paint Bucket, granting 25% Movement Speed for 5 seconds.");
         html += '<div class="option-note">Artistic Inspiration is not auto-cast. Use the Brusha Boost Ally Buff for the reworked always-on machine buff.</div>';
     }
     if (state.toon.name === "Gourdy") {
@@ -1683,7 +1684,6 @@ function checkboxRow(id, label, checked, tooltip) {
 
 function setToonOption(key, value) {
     if (key === "yattaCandySlots") value = clamp(parseInt(value, 10) || 0, 0, 3);
-    if (key === "astroToonsReached") value = clamp(parseInt(value, 10) || 1, 1, 8);
     if (key === "boxtenPlayers") {
         value = clamp(parseInt(value, 10) || 1, 1, 8);
         state.players = value;
@@ -1742,7 +1742,7 @@ function selectToon(name) {
         yattaCandySlots: 0,
         waxwellAutoIgnite: true,
         razzleParity: "odd",
-        astroToonsReached: 1
+        brushaPaintBucketBoost: true
     };
     if (toon.name === "Soulvester") state.speed = 1;
     if (toon.name === "Razzle & Dazzle") {
@@ -1949,6 +1949,7 @@ function syncStateFromUI() {
     state.itemRefill = getInt("itemRefill", 3);
     state.extractionCards = state.extractionCards;
     state.staminaCards = state.staminaCards;
+    state.astroToonsReached = clamp(getInt("astroToonsReached", 1), 1, 8);
     state.ally.astro = getChecked("Astro");
     state.ally.shelly = getChecked("Shelly");
     state.ally.brusha = getChecked("BrushaBoost");
